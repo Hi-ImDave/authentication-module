@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { useParams, useNavigate } from 'react-router-dom'
 
-import { resetPassword } from '../features/auth/authSlice'
+import { reset, resetPassword } from '../features/auth/authSlice'
 
 import Button from '../components/layout/Button.jsx'
 
@@ -45,7 +45,9 @@ const ResetPass = () => {
         token: token,
       }
       await dispatch(resetPassword(userData))
-      navigate('/dashboard')
+      toast.success('Password reset')
+      await dispatch(reset())
+      navigate('/')
     }
   }
 

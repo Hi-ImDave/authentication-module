@@ -15,4 +15,6 @@ HTML, CSS/TailwindCSS/daisyUI, JavaScript - JSX, React, Redux Toolkit, Express, 
 
 ## Optimizations:
 
+implement third party login && 2fa
+
 ## Lessons Learned:

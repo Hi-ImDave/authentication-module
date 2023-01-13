@@ -69,9 +69,7 @@ const verify = async (userId) => {
 // Reset password
 const resetPassword = async (user) => {
   const response = await axios.put(API_URL + '/reset', user)
-  if (response.data) {
-    localStorage.setItem('user', JSON.stringify(response.data))
-  }
+
   return response.data
 }
 
