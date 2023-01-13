@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 import { sendReset } from '../features/mail/mailSlice.js'
+import { toast } from 'react-toastify'
 
 import Button from '../components/layout/Button.jsx'
 import { FaSignInAlt } from 'react-icons/fa'
@@ -13,6 +16,7 @@ const ForgotPass = () => {
   const { email } = formData
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onChange = (event) => {
     setFormData((prevState) => ({
@@ -25,6 +29,8 @@ const ForgotPass = () => {
     event.preventDefault()
 
     dispatch(sendReset(formData))
+    navigate('/login')
+    toast.success('Code sent successfully')
   }
 
   return (

@@ -17,9 +17,8 @@ const Navbar = () => {
     navigate('/')
   }
 
-  const { _id, firstName, lastName, email } = user
-
   const onVerifyResend = () => {
+    const { _id, firstName, lastName, email } = user
     dispatch(
       sendVerification({
         _id,
