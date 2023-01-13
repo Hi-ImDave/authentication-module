@@ -31,12 +31,12 @@ export const sendVerification = createAsyncThunk(
   }
 )
 
-// Send password reset email
-export const sendReset = createAsyncThunk(
-  'mail/sendReset',
+// Request password reset
+export const resetRequest = createAsyncThunk(
+  'mail/resetRequest',
   async (email, thunkAPI) => {
     try {
-      return await mailService.sendReset(email)
+      return await mailService.resetRequest(email)
     } catch (error) {
       const message =
         (error.response &&
@@ -77,15 +77,15 @@ export const mailSlice = createSlice({
         state.message = action.payload
         state.user = null
       })
-      .addCase(sendReset.pending, (state) => {
+      .addCase(resetRequest.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(sendReset.fulfilled, (state, action) => {
+      .addCase(resetRequest.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
         state.user = action.payload
       })
-      .addCase(sendReset.rejected, (state, action) => {
+      .addCase(resetRequest.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

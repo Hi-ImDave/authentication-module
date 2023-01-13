@@ -2,9 +2,12 @@ const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
 
-const { sendVerification, sendReset } = require('../controllers/mailController')
+const {
+  sendVerification,
+  resetRequest,
+} = require('../controllers/mailController')
 
-router.post('/sendReset', sendReset)
 router.post('/sendVerification', sendVerification)
+router.post('/resetRequest', resetRequest)
 
 module.exports = router

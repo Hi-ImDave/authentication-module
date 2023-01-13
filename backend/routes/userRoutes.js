@@ -7,6 +7,7 @@ const {
   updateUser,
   uploadImage,
   verify,
+  resetRequest,
 } = require('../controllers/userController')
 
 const { protect } = require('../middleware/authMiddleware')

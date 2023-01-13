@@ -1,8 +1,10 @@
 const asyncHandler = require('express-async-handler')
 const nodemailer = require('nodemailer')
-const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+const crypto = require('crypto')
 
 const User = require('../models/userModel')
+const Token = require('../models/tokenModel')
 
 const sendVerification = asyncHandler(async (req, res) => {
   const { _id, email } = req.body
@@ -38,16 +40,38 @@ const sendVerification = asyncHandler(async (req, res) => {
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 })
 
-const sendReset = asyncHandler(async (req, res) => {
+// Request password reset
+// @desc    Request password reset
+// @route   /api/mail/resetRequest
+// @access  Private
+const resetRequest = asyncHandler(async (req, res) => {
   const { email } = req.body
+
   const user = await User.findOne({ email })
-  const token = generateToken(user._id, '1h')
-  console.log('token', token)
-  if (user) {
+
+  if (!user) {
+    res.status(400)
+    throw new Error('User does not exist')
+  }
+  let token = await Token.findOne({ userId: user._id })
+  if (token) {
+    await token.deleteOne()
+  }
+  let resetToken = crypto.randomBytes(32).toString('hex')
+  const salt = await bcrypt.genSalt(10)
+  const hashedToken = await bcrypt.hash(resetToken, salt)
+
+  const userToken = await Token.create({
+    userId: user._id,
+    token: hashedToken,
+    createdAt: Date.now(),
+  })
+
+  if (userToken) {
     const output = `
     <p>Please click the link to reset your password</p>
     <p>Link expires in 1 hour</p>
-    <a href="http://localhost:3000/reset/${token}">Reset password here</a>
+    <a href="http://localhost:3000/reset/token=${resetToken}&id=${user._id}">Reset password here</a>
   `
 
     // create reusable transporter object using the default SMTP transport
@@ -85,13 +109,7 @@ const sendReset = asyncHandler(async (req, res) => {
   }
 })
 
-const generateToken = (id, exp) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: exp,
-  })
-}
-
 module.exports = {
   sendVerification,
-  sendReset,
+  resetRequest,
 }

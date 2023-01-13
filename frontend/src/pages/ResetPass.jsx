@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import Button from '../components/layout/Button.jsx'
 
 const ResetPass = () => {
   const [formData, setFormData] = useState({
-    token: '',
     password: '',
     password2: '',
   })
@@ -55,7 +54,9 @@ const ResetPass = () => {
                 />
               </div>
               <div className='flex flex-row'>
-                <p>{!showPassword ? 'show' : 'hide'} password</p>
+                <p className='text-sm'>
+                  {!showPassword ? 'show' : 'hide'} password
+                </p>
                 <input
                   type='checkbox'
                   className='toggle toggle-success'

@@ -13,15 +13,15 @@ const sendVerification = async (userData) => {
   return response.data
 }
 
-// Send password reset email
-const sendReset = async (email) => {
-  const response = await axios.post(API_URL + '/sendReset', email)
+// Request password reset
+const resetRequest = async (email) => {
+  const response = await axios.post(API_URL + '/resetRequest', email)
   return response.data
 }
 
 const mailService = {
   sendVerification,
-  sendReset,
+  resetRequest,
 }
 
 export default mailService
