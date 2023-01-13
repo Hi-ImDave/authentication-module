@@ -57,7 +57,7 @@ const Navbar = () => {
         </div>
         <div className='navbar-center'>
           <Link to='/dashboard' className='btn btn-ghost normal-case text-3xl'>
-            Chat Module
+            Authentication Module
           </Link>
         </div>
 
