@@ -71,7 +71,7 @@ const resetRequest = asyncHandler(async (req, res) => {
     const output = `
     <p>Please click the link to reset your password</p>
     <p>Link expires in 1 hour</p>
-    <a href="http://localhost:3000/reset/token=${resetToken}&id=${user._id}">Reset password here</a>
+    <a href="http://localhost:3000/reset/${resetToken}/${user._id}">Reset password here</a>
   `
 
     // create reusable transporter object using the default SMTP transport

@@ -1,4 +1,10 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+
+import { useParams, useNavigate } from 'react-router-dom'
+
+import { resetPassword } from '../features/auth/authSlice'
 
 import Button from '../components/layout/Button.jsx'
 
@@ -11,6 +17,11 @@ const ResetPass = () => {
 
   const { password, password2 } = formData
 
+  const { id, token } = useParams()
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const onChange = (event) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -22,6 +33,22 @@ const ResetPass = () => {
     setShowPassword((prevState) => !prevState)
   }
 
+  const onSubmit = async (event) => {
+    event.preventDefault()
+
+    if (password !== password2) {
+      toast.error('Passwords do not match')
+    } else {
+      const userData = {
+        _id: id,
+        password,
+        token: token,
+      }
+      await dispatch(resetPassword(userData))
+      navigate('/dashboard')
+    }
+  }
+
   return (
     <>
       <div className='hero min-h-screen bg-emerald-500 bg-opacity-60'>
@@ -30,7 +57,7 @@ const ResetPass = () => {
             <h1 className='text-2xl font-bold'>Please choose a new password</h1>
           </div>
           <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-            <form className='card-body'>
+            <form className='card-body' onSubmit={onSubmit}>
               <div className='form-control space-y-3'>
                 <input
                   type={!showPassword ? 'password' : 'text'}

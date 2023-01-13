@@ -7,7 +7,7 @@ const {
   updateUser,
   uploadImage,
   verify,
-  resetRequest,
+  resetPassword,
 } = require('../controllers/userController')
 
 const { protect } = require('../middleware/authMiddleware')
@@ -21,5 +21,7 @@ router.put('/updateUser', updateUser)
 router.post('/me', uploadImage)
 
 router.put('/verify', verify)
+
+router.put('/reset', resetPassword)
 
 module.exports = router

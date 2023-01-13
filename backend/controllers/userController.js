@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const User = require('../models/userModel')
+const Token = require('../models/tokenModel')
 
 // @desc    Register a new user
 // @route   /api/users
@@ -155,10 +156,48 @@ const verify = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Reset password
+// @route   /api/users/reset
+// @method  PUT
+// @access  Private
+const resetPassword = asyncHandler(async (req, res) => {
+  const { _id, password, token } = req.body
+  const user = await Token.findOne({ userId: _id })
+  if (!user) {
+    res.status(400)
+    throw new Error('Invalid or expired token')
+  }
+  const isValid = await bcrypt.compare(token, user.token)
+  if (!isValid) {
+    res.status(400)
+    throw new Error('Invalid or expired token')
+  }
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(password, salt)
+  // Update user
+  const updatedUser = await User.findOneAndUpdate(
+    { _id },
+    { password: hashedPassword }
+  )
+  if (updatedUser) {
+    await Token.deleteOne({ userId: _id })
+    res.status(201).json({
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      email: updatedUser.email,
+      isActive: updatedUser.isActive,
+    })
+  } else {
+    res.status(400)
+    throw new Error('Invalid user data')
+  }
+})
+
 module.exports = {
   registerUser,
   loginUser,
   updateUser,
   verify,
   uploadImage,
+  resetPassword,
 }

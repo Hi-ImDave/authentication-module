@@ -35,7 +35,7 @@ function App() {
           </Route>
           <Route path='/verify/:verificationId' element={<Verify />} />
           <Route path='/forgot-password' element={<ForgotPass />} />
-          <Route path='/reset/:resetId' element={<ResetPass />} />
+          <Route path='/reset/:token/:id' element={<ResetPass />} />
         </Routes>
 
         {/* <Footer /> */}

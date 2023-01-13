@@ -66,12 +66,22 @@ const verify = async (userId) => {
   return response.data
 }
 
+// Reset password
+const resetPassword = async (user) => {
+  const response = await axios.put(API_URL + '/reset', user)
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data))
+  }
+  return response.data
+}
+
 const authService = {
   register,
   update,
   logout,
   login,
   verify,
+  resetPassword,
 }
 
 export default authService
