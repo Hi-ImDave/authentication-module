@@ -19,9 +19,16 @@ const resetRequest = async (email) => {
   return response.data
 }
 
+// Confirm password reset
+const resetConfirm = async (userId) => {
+  const response = await axios.post(API_URL + '/resetConfirm', userId)
+  return response.data
+}
+
 const mailService = {
   sendVerification,
   resetRequest,
+  resetConfirm,
 }
 
 export default mailService

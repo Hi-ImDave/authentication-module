@@ -50,6 +50,25 @@ export const resetRequest = createAsyncThunk(
   }
 )
 
+// Confirm password reset
+export const resetConfirm = createAsyncThunk(
+  'mail/resetConfirm',
+  async (userId, thunkAPI) => {
+    try {
+      return await mailService.resetConfirm(userId)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 export const mailSlice = createSlice({
   name: 'mail',
   initialState,
@@ -86,6 +105,20 @@ export const mailSlice = createSlice({
         state.user = action.payload
       })
       .addCase(resetRequest.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+        state.user = null
+      })
+      .addCase(resetConfirm.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(resetConfirm.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.user = action.payload
+      })
+      .addCase(resetConfirm.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

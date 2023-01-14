@@ -109,7 +109,55 @@ const resetRequest = asyncHandler(async (req, res) => {
   }
 })
 
+const resetConfirm = asyncHandler(async (req, res) => {
+  const { userId } = req.body
+
+  const user = await User.findOne({ _id: userId })
+
+  if (user) {
+    const output = `
+    <p>You recently requested to reset your password.</p>
+    <p>This email is to confirm that your password has successfully been updated</p>
+    <a href="http://localhost:3000/login">Please login here</a>
+  `
+
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      host: process.env.NODEMAILER_HOST,
+      port: process.env.NODEMAILER_PORT,
+      auth: {
+        user: process.env.NODEMAILER_USERNAME,
+        pass: process.env.NODEMAILER_PASSWORD,
+      },
+    })
+
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"David Mott" <373cf75d435404>',
+      to: user.email,
+      subject: 'Password reset success!',
+      text: '',
+      html: output,
+    })
+
+    res.status(201).json({
+      email: user.email,
+    })
+
+    console.log('Message sent: %s', info.messageId)
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+    // Preview only available when sending through an Ethereal account
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  } else {
+    res.status(404)
+    throw new Error('No user with that email address')
+  }
+})
+
 module.exports = {
   sendVerification,
   resetRequest,
+  resetConfirm,
 }
