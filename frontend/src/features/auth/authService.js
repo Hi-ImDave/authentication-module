@@ -35,9 +35,9 @@ const update = async (userData) => {
         _id: userData._id,
         firstName: response.data.firstName,
         lastName: response.data.lastName,
-
         email: response.data.email,
         token: userData.token,
+        isActive: response.data.isActive,
       })
     )
   }
@@ -49,6 +49,7 @@ const update = async (userData) => {
     email: response.data.email,
     token: userData.token,
     isAdmin: userData.isAdmin,
+    isActive: response.data.isActive,
   }
 }
 

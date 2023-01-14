@@ -91,17 +91,20 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 
   // Update user
-  const user = await User.findOneAndUpdate({
-    firstName,
-    lastName,
-    email,
-  })
+  const user = await User.findOneAndUpdate(
+    {
+      email,
+    },
+    { firstName, lastName, email }
+  )
 
   if (user) {
     res.status(201).json({
+      _id: user._id,
       firstName: firstName,
       lastName: lastName,
       email: email,
+      isActive: user.isActive,
     })
   } else {
     res.status(400)
