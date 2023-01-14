@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaUser } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -166,6 +167,13 @@ const Register = () => {
                 <Button title='Register' className='btn-primary' />
               </div>
             </form>
+            <div className='divider'>OR</div>
+            <div className='m-6 flex justify-center space-between '>
+              <Button
+                title={<FcGoogle size='2em' />}
+                className='btn-ghost btn-circle '
+              />
+            </div>
           </div>
         </div>
       </div>

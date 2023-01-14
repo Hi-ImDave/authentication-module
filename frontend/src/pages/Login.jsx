@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
@@ -109,6 +110,13 @@ const Login = () => {
                 <Button title='Login' className='btn-primary' />
               </div>
             </form>
+            <div className='divider'>OR</div>
+            <div className='m-6 flex justify-center space-between '>
+              <Button
+                title={<FcGoogle size='2em' />}
+                className='btn-ghost btn-circle '
+              />
+            </div>
           </div>
         </div>
       </div>
