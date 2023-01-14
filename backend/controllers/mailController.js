@@ -33,11 +33,6 @@ const sendVerification = asyncHandler(async (req, res) => {
   })
 
   console.log('Message sent: %s', info.messageId)
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  // Preview only available when sending through an Ethereal account
-  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 })
 
 // Request password reset
@@ -98,11 +93,6 @@ const resetRequest = asyncHandler(async (req, res) => {
     })
 
     console.log('Message sent: %s', info.messageId)
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-    // Preview only available when sending through an Ethereal account
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   } else {
     res.status(404)
     throw new Error('No user with that email address')
@@ -145,11 +135,6 @@ const resetConfirm = asyncHandler(async (req, res) => {
     })
 
     console.log('Message sent: %s', info.messageId)
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-    // Preview only available when sending through an Ethereal account
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   } else {
     res.status(404)
     throw new Error('No user with that email address')
