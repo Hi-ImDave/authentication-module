@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaUser } from 'react-icons/fa'
+import { FaUser, FaTwitter, FaFacebook } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
@@ -82,97 +82,110 @@ const Register = () => {
     <>
       <div className='hero min-h-screen bg-emerald-500 bg-opacity-60'>
         <div className='hero-content flex-col'>
-          <div className='text-center '>
-            <FaUser className='text-5xl font-bold' />
-            <h1 className='text-5xl font-bold'>Register now!</h1>
+          <div className='text-center flex '>
+            <FaUser className='mr-3 text-2xl  md:text-5xl font-bold' />
+            <h1 className='text-2xl md:text-5xl font-bold'>Register now!</h1>
           </div>
           <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-            <form className='card-body' onSubmit={onSubmit}>
-              <div className='form-control'>
-                <label className='label'>
-                  <span className='label-text'>First name</span>
-                </label>
-                <input
-                  type='text'
-                  placeholder='First Name'
-                  className='input input-bordered'
-                  id='firstName'
-                  name='firstName'
-                  value={firstName}
-                  onChange={onChange}
-                  required
+            <div className='card-body'>
+              <form className='' onSubmit={onSubmit}>
+                <div className='form-control'>
+                  <label className='label'>
+                    <span className='label-text'>First name</span>
+                  </label>
+                  <input
+                    type='text'
+                    placeholder='First Name'
+                    className='input input-bordered'
+                    id='firstName'
+                    name='firstName'
+                    value={firstName}
+                    onChange={onChange}
+                    required
+                  />
+                </div>
+                <div className='form-control'>
+                  <label className='label'>
+                    <span className='label-text'>Last name</span>
+                  </label>
+                  <input
+                    type='text'
+                    placeholder='Last Name'
+                    className='input input-bordered'
+                    id='lastName'
+                    name='lastName'
+                    value={lastName}
+                    onChange={onChange}
+                    required
+                  />
+                </div>
+                <div className='form-control'>
+                  <label className='label'>
+                    <span className='label-text'>Email</span>
+                  </label>
+                  <input
+                    type='email'
+                    placeholder='Email'
+                    className='input input-bordered'
+                    id='email'
+                    name='email'
+                    value={email}
+                    onChange={onChange}
+                    required
+                  />
+                </div>
+                <div className='form-control'>
+                  <label className='label'>
+                    <span className='label-text'>Password</span>
+                  </label>
+                  <input
+                    type='password'
+                    placeholder='Enter Password'
+                    className='input input-bordered'
+                    id='password'
+                    name='password'
+                    value={password}
+                    onChange={onChange}
+                    required
+                  />
+                </div>
+                <div className='form-control'>
+                  <label className='label'>
+                    <span className='label-text'>Re-Enter Password</span>
+                  </label>
+                  <input
+                    type='password'
+                    placeholder='Confirm Password'
+                    className='input input-bordered'
+                    id='password2'
+                    name='password2'
+                    value={password2}
+                    onChange={onChange}
+                    required
+                  />
+                </div>
+                <div className='form-control mt-6'>
+                  <Button
+                    title='Register'
+                    className='btn-primary btn-lg md:btn-md'
+                  />
+                </div>
+              </form>
+              <div className='divider'>OR</div>
+              <div className=' flex flex-row justify-around'>
+                <Button
+                  title={<FcGoogle className='md:text-5xl ' />}
+                  className='btn-ghost btn-circle '
+                />
+                <Button
+                  title={<FaTwitter color='#00ACEE' className='md:text-5xl' />}
+                  className='btn-ghost btn-circle '
+                />
+                <Button
+                  title={<FaFacebook color='#3B5998' className='md:text-5xl' />}
+                  className='btn-ghost btn-circle '
                 />
               </div>
-              <div className='form-control'>
-                <label className='label'>
-                  <span className='label-text'>Last name</span>
-                </label>
-                <input
-                  type='text'
-                  placeholder='Last Name'
-                  className='input input-bordered'
-                  id='lastName'
-                  name='lastName'
-                  value={lastName}
-                  onChange={onChange}
-                  required
-                />
-              </div>
-              <div className='form-control'>
-                <label className='label'>
-                  <span className='label-text'>Email</span>
-                </label>
-                <input
-                  type='email'
-                  placeholder='Email'
-                  className='input input-bordered'
-                  id='email'
-                  name='email'
-                  value={email}
-                  onChange={onChange}
-                  required
-                />
-              </div>
-              <div className='form-control'>
-                <label className='label'>
-                  <span className='label-text'>Password</span>
-                </label>
-                <input
-                  type='password'
-                  placeholder='Enter Password'
-                  className='input input-bordered'
-                  id='password'
-                  name='password'
-                  value={password}
-                  onChange={onChange}
-                  required
-                />
-              </div>
-              <div className='form-control'>
-                <label className='label'>
-                  <span className='label-text'>Re-Enter Password</span>
-                </label>
-                <input
-                  type='password'
-                  placeholder='Confirm Password'
-                  className='input input-bordered'
-                  id='password2'
-                  name='password2'
-                  value={password2}
-                  onChange={onChange}
-                  required
-                />
-              </div>
-              <div className='form-control mt-6'>
-                <Button title='Register' className='btn-primary' />
-              </div>
-            </form>
-            <div className='divider'>OR</div>
-            <div className='m-6 flex justify-center space-between '>
-              <Button
-                title={<FcGoogle size='2em' />}
-                className='btn-ghost btn-circle '
-              />
             </div>
           </div>
         </div>

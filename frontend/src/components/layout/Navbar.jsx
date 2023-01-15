@@ -55,14 +55,17 @@ const Navbar = () => {
           )}
         </div>
         <div className='navbar-center'>
-          <Link to='/dashboard' className='btn btn-ghost normal-case text-3xl'>
+          <Link
+            to='/dashboard'
+            className='btn btn-ghost normal-case text-lg md:text-3xl'
+          >
             Authentication Module
           </Link>
         </div>
 
         {user ? (
           <div className='navbar-end' onClick={onLogout}>
-            <div className='btn btn-ghost normal-case text-xl'>
+            <div className='btn btn-ghost normal-case text-base md:text-xl'>
               <FaSignOutAlt className='mx-1' />
               Logout
             </div>
@@ -70,14 +73,17 @@ const Navbar = () => {
         ) : (
           <div className='navbar-end'>
             <div>
-              <Link to='/login' className='btn btn-ghost normal-case text-xl'>
+              <Link
+                to='/login'
+                className='btn btn-ghost normal-case text-base md:text-xl'
+              >
                 <FaSignInAlt className='mx-1' /> Login
               </Link>
             </div>
             <div>
               <Link
                 to='/register'
-                className='btn btn-ghost normal-case text-xl'
+                className='btn btn-ghost normal-case text-base md:text-xl'
               >
                 <FaUser className='mx-1' /> Register
               </Link>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { FaSignInAlt } from 'react-icons/fa'
+import { FaSignInAlt, FaTwitter, FaFacebook } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
@@ -44,6 +44,10 @@ const Login = () => {
     }))
   }
 
+  const onGoogleClick = () => {
+    console.log('google')
+  }
+
   const onSubmit = (event) => {
     event.preventDefault()
 
@@ -63,9 +67,9 @@ const Login = () => {
     <>
       <div className='hero min-h-screen bg-emerald-500 bg-opacity-60'>
         <div className='hero-content flex-col '>
-          <div className='text-center '>
-            <FaSignInAlt className='text-5xl font-bold' />
-            <h1 className='text-5xl font-bold'>Login now!</h1>
+          <div className='text-center flex'>
+            <FaSignInAlt className='mr-3 text-2xl md:text-5xl font-bold' />
+            <h1 className='text-2xl md:text-5xl font-bold'>Login now!</h1>
           </div>
           <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
             <form className='card-body' onSubmit={onSubmit}>
@@ -107,13 +111,25 @@ const Login = () => {
                 </label>
               </div>
               <div className='form-control mt-6'>
-                <Button title='Login' className='btn-primary' />
+                <Button
+                  title='Login'
+                  className='btn-primary btn-lg md:btn-md'
+                />
               </div>
             </form>
             <div className='divider'>OR</div>
-            <div className='m-6 flex justify-center space-between '>
+            <div className='m-6 flex justify-around '>
               <Button
                 title={<FcGoogle size='2em' />}
+                className='btn-ghost btn-circle '
+                onClick={onGoogleClick}
+              />
+              <Button
+                title={<FaTwitter size='2em' color='#00ACEE' />}
+                className='btn-ghost btn-circle '
+              />
+              <Button
+                title={<FaFacebook size='2em' color='#3B5998' />}
                 className='btn-ghost btn-circle '
               />
             </div>

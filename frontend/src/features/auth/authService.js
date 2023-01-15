@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = '/api/users'
+const API_URL = '/api/auth'
 
 // Register user
 const register = async (userData) => {
@@ -23,6 +23,8 @@ const login = async (userData) => {
 
   return response.data
 }
+
+// Login with google
 
 // Update user
 const update = async (userData) => {

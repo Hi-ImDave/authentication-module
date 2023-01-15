@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('passport')
 const router = express.Router()
 
 const {
@@ -8,7 +9,7 @@ const {
   uploadImage,
   verify,
   resetPassword,
-} = require('../controllers/userController')
+} = require('../controllers/authController')
 
 const { protect } = require('../middleware/authMiddleware')
 

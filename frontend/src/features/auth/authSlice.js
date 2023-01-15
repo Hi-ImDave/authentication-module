@@ -46,6 +46,8 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   }
 })
 
+// Login with google
+
 // Update user
 export const update = createAsyncThunk(
   'auth/updateUser',
@@ -163,6 +165,7 @@ export const authSlice = createSlice({
         state.message = action.payload
         state.user = null
       })
+
       .addCase(logout.fulfilled, (state) => {
         state.user = null
       })
