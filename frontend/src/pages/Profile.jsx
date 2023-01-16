@@ -3,13 +3,12 @@ import { useState, useEffect } from 'react'
 import Avatar from '../components/layout/Avatar'
 import Button from '../components/layout/Button'
 import { toast } from 'react-toastify'
+import { Spinner } from '../components/layout/Spinner'
 
 import { update, reset } from '../features/auth/authSlice'
 
 const Profile = () => {
-  const { user, isLoading, isSuccess, isError, message } = useSelector(
-    (state) => state.auth
-  )
+  const { user, isLoading, isSuccess } = useSelector((state) => state.auth)
   const [changeDetails, setChangeDetails] = useState(false)
   const [adminPanel, setAdminPanel] = useState(false)
   const [formData, setFormData] = useState({
@@ -19,6 +18,7 @@ const Profile = () => {
     email: user.email,
     token: user.token,
     isAdmin: user.isAdmin,
+    isActive: user.isActive,
   })
 
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ const Profile = () => {
     }
   }, [dispatch, isSuccess])
 
-  const { firstName, lastName, email, _id, token, isAdmin } = formData
+  const { firstName, lastName, email, _id, token, isAdmin, isActive } = formData
 
   const onSubmit = (event) => {
     event.preventDefault()
@@ -42,6 +42,7 @@ const Profile = () => {
       email,
       token,
       isAdmin,
+      isActive,
     }
     dispatch(update(userData))
     toast.success('Changes submitted successfully!')
@@ -67,7 +68,7 @@ const Profile = () => {
     <>
       <div className='min-h-screen bg-emerald-500 bg-opacity-60'>
         <div className='flex flex-row justify-start'>
-          <div className='m-5'>
+          <div className='m-5 '>
             <Avatar profilePicture='https://placeimg.com/192/192/people' />
           </div>
           <div className='max-w-md mt-7'>
@@ -76,6 +77,7 @@ const Profile = () => {
               className='btn-primary mx-1'
               onClick={onEditClick}
             />
+
             {isAdmin && (
               <Button
                 title='Open Admin Panel'

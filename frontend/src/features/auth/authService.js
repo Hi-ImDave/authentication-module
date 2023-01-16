@@ -64,9 +64,8 @@ const logout = () => {
 const verify = async (userId) => {
   const response = await axios.put(API_URL + '/verify', userId)
   if (response.data) {
-    localStorage.setItem('user', JSON.stringify(response.data))
+    localStorage.removeItem('user')
   }
-  return response.data
 }
 
 // Reset password

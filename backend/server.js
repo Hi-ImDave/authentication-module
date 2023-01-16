@@ -1,5 +1,4 @@
 const express = require('express')
-const passport = require('passport')
 const http = require('http')
 const colors = require('colors')
 const dotenv = require('dotenv').config()
@@ -10,7 +9,6 @@ const session = require('express-session')
 const { errorHandler } = require('./middleware/errorMiddleware')
 const connectDB = require('./config/database')
 const cors = require('cors')
-require('./config/passport')(passport)
 
 connectDB()
 const app = express()
@@ -42,8 +40,6 @@ app.use(
     saveUninitialized: false,
   })
 )
-app.use(passport.initialize())
-app.use(passport.session())
 
 app.get('/', (req, res) => {
   res.send('Hello')
