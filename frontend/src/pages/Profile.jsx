@@ -10,7 +10,6 @@ import { update, reset } from '../features/auth/authSlice'
 const Profile = () => {
   const { user, isLoading, isSuccess } = useSelector((state) => state.auth)
   const [changeDetails, setChangeDetails] = useState(false)
-  const [adminPanel, setAdminPanel] = useState(false)
   const [formData, setFormData] = useState({
     _id: user._id,
     firstName: user.firstName,
@@ -60,10 +59,6 @@ const Profile = () => {
     setChangeDetails((prevState) => !prevState)
   }
 
-  const onAdminClick = () => {
-    setAdminPanel((prevState) => !prevState)
-  }
-
   return (
     <>
       <div className='min-h-screen bg-emerald-500 bg-opacity-60'>
@@ -77,14 +72,6 @@ const Profile = () => {
               className='btn-primary mx-1'
               onClick={onEditClick}
             />
-
-            {isAdmin && (
-              <Button
-                title='Open Admin Panel'
-                className='btn-primary mx-1'
-                onClick={onAdminClick}
-              />
-            )}
           </div>
         </div>
         <div className='w-11/12 sm:w-1/2 lg:w-1/3 ml-5'>

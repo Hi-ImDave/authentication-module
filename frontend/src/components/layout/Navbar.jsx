@@ -11,6 +11,8 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
 
+  const { isAdmin } = user
+
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
@@ -50,6 +52,11 @@ const Navbar = () => {
                 <li>
                   <Link to='/profile'>Profile</Link>
                 </li>
+                {isAdmin && (
+                  <li>
+                    <Link to='/admin'>Admin Panel</Link>
+                  </li>
+                )}
               </ul>
             </div>
           )}

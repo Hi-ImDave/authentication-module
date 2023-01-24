@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 // PAGES
 import PrivateRoute from './components/PrivateRoute'
+import AdminRoute from './components/AdminRoute'
 
 import Welcome from './pages/Welcome'
 import Login from './pages/Login'
@@ -17,6 +18,7 @@ import Verify from './pages/Verify'
 import Navbar from './components/layout/Navbar'
 import ForgotPass from './pages/ForgotPass'
 import ResetPass from './pages/ResetPass'
+import Admin from './pages/Admin'
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
           </Route>
           <Route path='/profile' element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
+          </Route>
+          <Route path='/admin' element={<AdminRoute />}>
+            <Route path='/admin' element={<Admin />} />
           </Route>
           <Route path='/verify/:verificationId' element={<Verify />} />
           <Route path='/forgot-password' element={<ForgotPass />} />
