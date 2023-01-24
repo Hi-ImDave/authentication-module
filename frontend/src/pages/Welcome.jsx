@@ -6,7 +6,7 @@
 
 const Welcome = () => {
   return (
-    <div className='hero min-h-screen bg-emerald-500 bg-opacity-60'>
+    <div className='hero min-h-screen bg-white bg-opacity-80'>
       <div className='hero-content text-center text-neutral-content'>
         <div className='max-w-md'>
           <h1 className='mb-5 text-5xl font-bold'>Authentication Module</h1>

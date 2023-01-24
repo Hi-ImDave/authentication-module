@@ -1,0 +1,75 @@
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { FaEdit } from 'react-icons/fa'
+
+import Badge from '../layout/Badge'
+
+import { getUsers, reset } from '../../features/auth/authSlice'
+import { Spinner } from '../layout/Spinner'
+
+const UserList = () => {
+  const { user, users, isLoading, isSuccess } = useSelector(
+    (state) => state.auth
+  )
+
+  const { email } = user
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    return () => {
+      if (isSuccess) {
+        dispatch(reset())
+      }
+      dispatch(reset())
+    }
+  }, [dispatch, isSuccess])
+
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [dispatch])
+
+  if (isLoading) {
+    return <Spinner />
+  }
+
+  return (
+    <>
+      <div className='grid grid-cols-4 gap-2 bg-white bg-opacity-80 p-8 '>
+        {users.map((user) => (
+          <div
+            key={user._id}
+            className='card w-96 bg-base-100 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105'
+          >
+            <div className='card-body'>
+              {user.email === email && (
+                <Badge
+                  badgeColor='badge-success'
+                  badgeSize='badge-xs'
+                  title='me'
+                />
+              )}
+              <h2 className='card-title'>
+                {' '}
+                {`${user.firstName} ${user.lastName}`}
+              </h2>
+
+              <p>{user.email}</p>
+              <FaEdit className='absolute top-5 right-5 hover:text-violet-600' />
+              <div className='absolute space-x-2 bottom-0 right-0 pb-4 pr-4'>
+                {user.isActive && (
+                  <Badge badgeColor='badge-primary' title='verified email' />
+                )}
+                {user.isAdmin && (
+                  <Badge badgeColor='badge-error' title='admin' />
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
+export default UserList

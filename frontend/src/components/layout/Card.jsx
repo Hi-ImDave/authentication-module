@@ -5,7 +5,9 @@ import Button from './Button'
 
 const Card = ({ title, description, navigate, className }) => {
   return (
-    <div className={`card  bg-cyan-900 shadow-xl hover:scale-105 ${className}`}>
+    <div
+      className={`card  bg-cyan-900 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105 ${className}`}
+    >
       <div className='card-body items-center text-center'>
         <h2 className='card-title'>{title}</h2>
         <p>{description}</p>

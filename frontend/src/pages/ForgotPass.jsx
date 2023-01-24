@@ -34,7 +34,7 @@ const ForgotPass = () => {
 
   return (
     <>
-      <div className='hero min-h-screen bg-emerald-500 bg-opacity-60'>
+      <div className='hero min-h-screen bg-white bg-opacity-80'>
         <div className='hero-content flex-col '>
           <div className='text-center '>
             <h1 className='text-2xl font-bold'>

@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 const Token = require('../models/tokenModel')
 
+const sendVerification = require('./mailController')
+
 // @desc    Register a new user
 // @route   /api/users
 // @method  POST
@@ -82,7 +84,8 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   /api/users/updateUser
 // @access  Public
 const updateUser = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email } = req.body
+  const { _id, firstName, lastName, email, prevEmail } = req.body
+  const emailUpdated = email !== prevEmail
 
   // Validation
   if (!firstName || !lastName || !email) {
@@ -93,7 +96,7 @@ const updateUser = asyncHandler(async (req, res) => {
   // Update user
   const user = await User.findOneAndUpdate(
     {
-      email,
+      prevEmail,
     },
     { firstName, lastName, email }
   )
@@ -104,7 +107,8 @@ const updateUser = asyncHandler(async (req, res) => {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      isActive: user.isActive,
+      isActive: emailUpdated ? false : user.isActive,
+      isAdmin: user.isAdmin,
     })
   } else {
     res.status(400)
@@ -196,6 +200,15 @@ const resetPassword = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Get all users
+// @route   GET /api/users
+// @access  Private
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find()
+
+  res.status(201).json(users)
+})
+
 module.exports = {
   registerUser,
   loginUser,
@@ -203,4 +216,5 @@ module.exports = {
   verify,
   uploadImage,
   resetPassword,
+  getUsers,
 }

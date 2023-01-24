@@ -9,7 +9,6 @@ const AdminRoute = () => {
   if (checkingStatus) {
     return <Spinner />
   }
-  console.log(isAdmin)
   return loggedIn && isAdmin ? (
     <Outlet />
   ) : loggedIn ? (

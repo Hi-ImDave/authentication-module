@@ -2,7 +2,7 @@ import Card from '../components/layout/Card'
 
 const Dashboard = () => {
   return (
-    <div className='hero min-h-screen bg-emerald-500 bg-opacity-60 '>
+    <div className='hero min-h-screen bg-white bg-opacity-80 '>
       <div className='flex justify-center content-center my-7'>
         <div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  lg:gap-6 gap-4 '>
           <Card

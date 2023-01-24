@@ -21,7 +21,7 @@ const Verify = () => {
   })
 
   return (
-    <div className='min-h-screen bg-emerald-500 bg-opacity-60 text-center'>
+    <div className='min-h-screen bg-white bg-opacity-80 text-center'>
       <form className='card-body'>
         <p>Thank you for verifying your account</p>
         <p>You will now be redirected to the login page</p>

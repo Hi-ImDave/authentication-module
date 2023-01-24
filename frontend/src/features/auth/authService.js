@@ -40,6 +40,7 @@ const update = async (userData) => {
         email: response.data.email,
         token: userData.token,
         isActive: response.data.isActive,
+        isAdmin: response.data.isAdmin,
       })
     )
   }
@@ -75,6 +76,13 @@ const resetPassword = async (user) => {
   return response.data
 }
 
+// Get all users
+const getUsers = async () => {
+  const response = await axios.get(API_URL + '/getAll')
+
+  return response.data
+}
+
 const authService = {
   register,
   update,
@@ -82,6 +90,7 @@ const authService = {
   login,
   verify,
   resetPassword,
+  getUsers,
 }
 
 export default authService
