@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { FaEdit } from 'react-icons/fa'
+import { FaEdit, FaUsers } from 'react-icons/fa'
 
 import Badge from '../layout/Badge'
 
@@ -34,8 +34,12 @@ const UserList = () => {
   }
 
   return (
-    <>
-      <div className='grid grid-cols-4 gap-2 bg-white bg-opacity-80 p-8 '>
+    <div className='p-10 w-3/4'>
+      <h2 className='text-center text-4xl mb-4 text-black font-semibold underline'>
+        Active Users
+      </h2>
+
+      <div className='grid grid-cols-3 gap-2  '>
         {users.map((user) => (
           <div
             key={user._id}
@@ -68,7 +72,7 @@ const UserList = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

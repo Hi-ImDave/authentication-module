@@ -1,28 +1,16 @@
 import UserList from '../components/user/UserList'
+import InviteForm from '../components/layout/InviteForm'
+
+import { FaUsers, FaUserPlus } from 'react-icons/fa'
 
 const Admin = () => {
   return (
-    <div className='drawer drawer-mobile '>
+    <div className='drawer drawer-mobile bg-white bg-opacity-80'>
       <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
-      <div className='drawer-content '>
+      <div className='drawer-content flex'>
+        <InviteForm />
+
         <UserList />
-        <label
-          htmlFor='my-drawer-2'
-          className='btn btn-primary drawer-button lg:hidden'
-        >
-          Open drawer
-        </label>
-      </div>
-      <div className='drawer-side'>
-        <label htmlFor='my-drawer-2' className='drawer-overlay'></label>
-        <ul className='menu p-4 w-80 bg-base-100 text-base-content'>
-          <li>
-            <span>Users</span>
-          </li>
-          <li>
-            <span>Sidebar Item 2</span>
-          </li>
-        </ul>
       </div>
     </div>
   )
