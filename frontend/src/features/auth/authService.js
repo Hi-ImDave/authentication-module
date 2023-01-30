@@ -2,6 +2,15 @@ import axios from 'axios'
 
 const API_URL = '/api/auth'
 
+// Invite user
+const inviteUser = async (data) => {
+  const response = await axios.post(API_URL + '/invite', data)
+
+  if (response.data) {
+    return response.data
+  }
+}
+
 // Register user
 const register = async (userData) => {
   const response = await axios.post(API_URL, userData)
@@ -83,7 +92,15 @@ const getUsers = async () => {
   return response.data
 }
 
+// Get pending invites
+const getPending = async () => {
+  const response = await axios.get(API_URL + '/pending')
+
+  return response.data
+}
+
 const authService = {
+  inviteUser,
   register,
   update,
   logout,
@@ -91,6 +108,7 @@ const authService = {
   verify,
   resetPassword,
   getUsers,
+  getPending,
 }
 
 export default authService

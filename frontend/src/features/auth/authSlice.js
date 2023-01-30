@@ -6,6 +6,7 @@ import authService from './authService'
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
+  pending: [],
   users: [],
   user: user ? user : null,
   isError: false,
@@ -13,6 +14,25 @@ const initialState = {
   isLoading: false,
   message: '',
 }
+
+// Invite new user
+export const inviteUser = createAsyncThunk(
+  'auth/invite',
+  async (data, thunkAPI) => {
+    try {
+      return await authService.inviteUser(data)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
 
 // Register new user
 export const register = createAsyncThunk(
@@ -125,6 +145,25 @@ export const getUsers = createAsyncThunk('auth/getAll', async (_, thunkAPI) => {
   }
 })
 
+// Get pending invites
+export const getPending = createAsyncThunk(
+  'auth/getPending',
+  async (_, thunkAPI) => {
+    try {
+      return await authService.getPending()
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -138,6 +177,18 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(inviteUser.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(inviteUser.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+      })
+      .addCase(inviteUser.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
       .addCase(register.pending, (state) => {
         state.isLoading = true
       })
@@ -221,6 +272,19 @@ export const authSlice = createSlice({
         state.users = action.payload
       })
       .addCase(getUsers.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(getPending.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getPending.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.pending = action.payload
+      })
+      .addCase(getPending.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

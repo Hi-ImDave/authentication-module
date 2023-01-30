@@ -13,7 +13,7 @@ const inviteSchema = mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: 3600,
+    expires: 604800,
   },
   isUsed: {
     type: Boolean,

@@ -10,6 +10,7 @@ const {
   verify,
   resetPassword,
   getUsers,
+  getPending,
 } = require('../controllers/authController')
 
 const { protect } = require('../middleware/authMiddleware')
@@ -29,5 +30,7 @@ router.put('/verify', verify)
 router.put('/reset', resetPassword)
 
 router.get('/getAll', getUsers)
+
+router.get('/pending', getPending)
 
 module.exports = router

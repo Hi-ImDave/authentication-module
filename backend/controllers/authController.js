@@ -10,7 +10,7 @@ const Invite = require('../models/inviteModel')
 const sendVerification = require('./mailController')
 
 // @desc    Invite a new user
-// @route   /api/users
+// @route   /api/auth/invite
 // @method  POST
 // @access  Private
 const inviteUser = asyncHandler(async (req, res) => {
@@ -22,8 +22,9 @@ const inviteUser = asyncHandler(async (req, res) => {
   }
 
   const inviteExists = await Invite.findOne({ email })
+  const userExists = await User.findOne({ email })
 
-  if (inviteExists) {
+  if (inviteExists || userExists) {
     res.status(400)
     throw new Error('This user already has an invite pending')
   }
@@ -48,7 +49,7 @@ const inviteUser = asyncHandler(async (req, res) => {
 })
 
 // @desc    Register a new user
-// @route   /api/users
+// @route   /api/auth
 // @method  POST
 // @access  Private
 const registerUser = asyncHandler(async (req, res) => {
@@ -97,7 +98,7 @@ const registerUser = asyncHandler(async (req, res) => {
 })
 
 // @desc    Login a user
-// @route   /api/users/login
+// @route   /api/auth/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body
@@ -121,7 +122,7 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 // @desc    Update user
-// @route   /api/users/updateUser
+// @route   /api/auth/updateUser
 // @access  Public
 const updateUser = asyncHandler(async (req, res) => {
   const { _id, firstName, lastName, email, prevEmail } = req.body
@@ -164,7 +165,7 @@ const generateToken = (id, exp) => {
 }
 
 // @desc    Upload user image
-// @route   /api/users/me
+// @route   /api/auth/me
 // @access  Private
 const uploadImage = asyncHandler(async (req, res) => {
   upload.single('image')
@@ -181,7 +182,7 @@ const uploadImage = asyncHandler(async (req, res) => {
 })
 
 // @desc    Verify user email
-// @route   /api/users/verify
+// @route   /api/auth/verify
 // @access  Private
 const verify = asyncHandler(async (req, res) => {
   const { verificationId } = req.body
@@ -204,7 +205,7 @@ const verify = asyncHandler(async (req, res) => {
 })
 
 // @desc    Reset password
-// @route   /api/users/reset
+// @route   /api/auth/reset
 // @method  PUT
 // @access  Private
 const resetPassword = asyncHandler(async (req, res) => {
@@ -241,12 +242,21 @@ const resetPassword = asyncHandler(async (req, res) => {
 })
 
 // @desc    Get all users
-// @route   GET /api/users
+// @route   GET /api/auth/getAll
 // @access  Private
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find()
 
   res.status(201).json(users)
+})
+
+// @desc    Get all pending invites
+// @route   GET /api/auth/pending
+// @access  Private
+const getPending = asyncHandler(async (req, res) => {
+  const pendingInvites = await Invite.find()
+  console.log(pendingInvites)
+  res.status(201).json(pendingInvites)
 })
 
 module.exports = {
@@ -258,4 +268,5 @@ module.exports = {
   uploadImage,
   resetPassword,
   getUsers,
+  getPending,
 }

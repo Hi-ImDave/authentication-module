@@ -34,7 +34,7 @@ const UserList = () => {
   }
 
   return (
-    <div className='p-10 w-3/4'>
+    <div className='p-10 w-3/5'>
       <h2 className='text-center text-4xl mb-4 text-black font-semibold underline'>
         Active Users
       </h2>

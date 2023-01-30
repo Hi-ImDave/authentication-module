@@ -171,7 +171,7 @@ const Register = () => {
                   />
                 </div>
               </form>
-              <div className='divider'>OR</div>
+              {/* <div className='divider'>OR</div>
               <div className=' flex flex-row justify-around'>
                 <Button
                   title={<FcGoogle className='md:text-5xl ' />}
@@ -185,7 +185,7 @@ const Register = () => {
                   title={<FaFacebook color='#3B5998' className='md:text-5xl' />}
                   className='btn-ghost btn-circle '
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
