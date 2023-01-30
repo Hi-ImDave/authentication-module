@@ -1,6 +1,11 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { FaEdit, FaUsers, FaEnvelope } from 'react-icons/fa'
+import {
+  FaEdit,
+  FaMicrophoneSlash,
+  FaEnvelope,
+  FaRegTrashAlt,
+} from 'react-icons/fa'
 
 import Badge from '../layout/Badge'
 
@@ -60,8 +65,24 @@ const UserList = () => {
 
               <p>{user.email}</p>
               <div className='absolute top-5 right-5 flex space-x-2'>
-                <FaEnvelope className='hover:text-success' />
-                <FaEdit className='hover:text-warning' />
+                <div className='tooltip tooltip-error' data-tip='Mute user'>
+                  <FaMicrophoneSlash className='hover:text-error' />
+                </div>
+                <div
+                  className='tooltip tooltip-success'
+                  data-tip='Message user'
+                >
+                  <FaEnvelope className='hover:text-success' />
+                </div>
+                <div
+                  className='tooltip tooltip-warning'
+                  data-tip='Edit user details'
+                >
+                  <FaEdit className='hover:text-warning' />
+                </div>
+                <div className='tooltip tooltip-error' data-tip='Delete user'>
+                  <FaRegTrashAlt className='hover:text-error' />
+                </div>
               </div>
 
               <div className='absolute space-x-2 bottom-0 right-0 pb-4 pr-4'>

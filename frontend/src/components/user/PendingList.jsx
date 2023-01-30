@@ -2,8 +2,6 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaEdit, FaRegClock, FaRegTrashAlt } from 'react-icons/fa'
 
-import Badge from '../layout/Badge'
-
 import { getPending, reset } from '../../features/auth/authSlice'
 import { Spinner } from '../layout/Spinner'
 
@@ -47,7 +45,7 @@ const PendingList = () => {
         Pending Invites
       </h2>
 
-      <div className='grid grid-cols-2 gap-2  '>
+      <div className='grid grid-cols-2 gap-3  '>
         {pending.map((invite) => (
           <div
             key={invite._id}
@@ -60,7 +58,10 @@ const PendingList = () => {
                 {getTimeElapsed(invite.createdAt)}d
               </div>
 
-              <div className='absolute top-5 right-5 flex space-x-2'>
+              <div
+                className='tooltip tooltip-error absolute top-5 right-5 flex space-x-2'
+                data-tip='Delete invite'
+              >
                 <FaRegTrashAlt className='hover:text-error' />
               </div>
             </div>
