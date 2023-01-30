@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// Used to generate invite token to allow new user to register account
 const inviteSchema = mongoose.Schema({
   email: {
     type: String,

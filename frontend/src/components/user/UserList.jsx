@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { FaEdit, FaUsers } from 'react-icons/fa'
+import { FaEdit, FaUsers, FaEnvelope } from 'react-icons/fa'
 
 import Badge from '../layout/Badge'
 
@@ -59,7 +59,11 @@ const UserList = () => {
               </h2>
 
               <p>{user.email}</p>
-              <FaEdit className='absolute top-5 right-5 hover:text-violet-600' />
+              <div className='absolute top-5 right-5 flex space-x-2'>
+                <FaEnvelope className='hover:text-success' />
+                <FaEdit className='hover:text-warning' />
+              </div>
+
               <div className='absolute space-x-2 bottom-0 right-0 pb-4 pr-4'>
                 {user.isActive && (
                   <Badge badgeColor='badge-primary' title='verified email' />

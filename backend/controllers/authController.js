@@ -1,16 +1,56 @@
 const asyncHandler = require('express-async-handler')
+const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const User = require('../models/userModel')
 const Token = require('../models/tokenModel')
+const Invite = require('../models/inviteModel')
 
 const sendVerification = require('./mailController')
+
+// @desc    Invite a new user
+// @route   /api/users
+// @method  POST
+// @access  Private
+const inviteUser = asyncHandler(async (req, res) => {
+  const { email } = req.body
+
+  if (!email) {
+    res.status(400)
+    throw new Error('Please enter a valid email address')
+  }
+
+  const inviteExists = await Invite.findOne({ email })
+
+  if (inviteExists) {
+    res.status(400)
+    throw new Error('This user already has an invite pending')
+  }
+
+  let token = crypto.randomBytes(32).toString('hex')
+  const salt = await bcrypt.genSalt(10)
+  const hashedToken = await bcrypt.hash(token, salt)
+
+  const newInvite = await Invite.create({
+    email,
+    token: hashedToken,
+    createdAt: Date.now(),
+    isUsed: false,
+  })
+
+  if (newInvite) {
+    res.status(201).json(newInvite)
+  } else {
+    res.status(400)
+    throw new Error('Invalid data')
+  }
+})
 
 // @desc    Register a new user
 // @route   /api/users
 // @method  POST
-// @access  Public
+// @access  Private
 const registerUser = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, password } = req.body
 
@@ -210,6 +250,7 @@ const getUsers = asyncHandler(async (req, res) => {
 })
 
 module.exports = {
+  inviteUser,
   registerUser,
   loginUser,
   updateUser,

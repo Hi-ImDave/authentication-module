@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// Used for resetting user password securely
 const tokenSchema = mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const {
+  inviteUser,
   registerUser,
   loginUser,
   updateUser,
@@ -12,6 +13,8 @@ const {
 } = require('../controllers/authController')
 
 const { protect } = require('../middleware/authMiddleware')
+
+router.post('/invite', inviteUser)
 
 router.post('/', registerUser)
 
