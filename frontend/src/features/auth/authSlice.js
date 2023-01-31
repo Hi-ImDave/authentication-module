@@ -164,6 +164,26 @@ export const getPending = createAsyncThunk(
   }
 )
 
+// Delete pending invite
+export const deleteInvite = createAsyncThunk(
+  'auth/deleteInvite',
+  async (inviteID, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token
+      return await authService.deleteInvite(inviteID, token)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -255,7 +275,7 @@ export const authSlice = createSlice({
       .addCase(resetPassword.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.user = action.paylod
+        state.user = action.payload
       })
       .addCase(resetPassword.rejected, (state, action) => {
         state.isLoading = false
@@ -285,6 +305,19 @@ export const authSlice = createSlice({
         state.pending = action.payload
       })
       .addCase(getPending.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(deleteInvite.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(deleteInvite.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.pending.filter((invite) => invite._id !== action.payload._id)
+      })
+      .addCase(deleteInvite.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

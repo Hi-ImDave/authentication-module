@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaEdit, FaRegClock, FaRegTrashAlt } from 'react-icons/fa'
 
-import { getPending, reset } from '../../features/auth/authSlice'
+import { getPending, deleteInvite, reset } from '../../features/auth/authSlice'
 import { Spinner } from '../layout/Spinner'
 
 const PendingList = () => {
@@ -58,12 +58,22 @@ const PendingList = () => {
                 {getTimeElapsed(invite.createdAt)}d
               </div>
 
-              <div
-                className='tooltip tooltip-error absolute top-5 right-5 flex space-x-2'
+              <button
+                className=' tooltip tooltip-error absolute top-5 right-5 flex space-x-2'
                 data-tip='Delete invite'
+                onClick={async () => {
+                  if (
+                    window.confirm(
+                      'Are you sure you want to delete this invite?'
+                    )
+                  ) {
+                    await dispatch(deleteInvite(invite._id))
+                    dispatch(getPending())
+                  }
+                }}
               >
                 <FaRegTrashAlt className='hover:text-error' />
-              </div>
+              </button>
             </div>
           </div>
         ))}

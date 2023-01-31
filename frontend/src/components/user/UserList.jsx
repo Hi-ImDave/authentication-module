@@ -53,7 +53,7 @@ const UserList = () => {
             <div className='card-body'>
               {user.email === email && (
                 <Badge
-                  badgeColor='badge-success'
+                  badgeColor='badge-primary'
                   badgeSize='badge-xs'
                   title='me'
                 />
@@ -85,12 +85,15 @@ const UserList = () => {
                 </div>
               </div>
 
-              <div className='absolute space-x-2 bottom-0 right-0 pb-4 pr-4'>
-                {user.isActive && (
-                  <Badge badgeColor='badge-primary' title='verified email' />
-                )}
+              <div className='absolute space-x-2 bottom-0 right-0 p-4'>
                 {user.isAdmin && (
-                  <Badge badgeColor='badge-error' title='admin' />
+                  <Badge badgeColor='badge-info' title='admin' />
+                )}
+                {user.isActive && (
+                  <Badge badgeColor='badge-success' title='verified email' />
+                )}
+                {user.isMuted && (
+                  <Badge badgeColor='badge-error' title='muted' />
                 )}
               </div>
             </div>

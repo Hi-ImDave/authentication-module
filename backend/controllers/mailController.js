@@ -6,6 +6,9 @@ const crypto = require('crypto')
 const User = require('../models/userModel')
 const Token = require('../models/tokenModel')
 
+// @desc    Send email verification link
+// @route   /api/mail/sendVerification
+// @access  Private
 const sendVerification = asyncHandler(async (req, res) => {
   const { _id, email } = req.body
   const output = `
@@ -35,8 +38,7 @@ const sendVerification = asyncHandler(async (req, res) => {
   console.log('Message sent: %s', info.messageId)
 })
 
-// Request password reset
-// @desc    Request password reset
+// @desc    Send Request password reset
 // @route   /api/mail/resetRequest
 // @access  Private
 const resetRequest = asyncHandler(async (req, res) => {
@@ -99,6 +101,9 @@ const resetRequest = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Send passsword reset confirmation
+// @route   /api/mail/resetConfirm
+// @access  Private
 const resetConfirm = asyncHandler(async (req, res) => {
   const { userId } = req.body
 

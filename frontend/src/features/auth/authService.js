@@ -99,6 +99,21 @@ const getPending = async () => {
   return response.data
 }
 
+// Delete pending invite
+const deleteInvite = async (inviteID, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  const response = await axios.delete(
+    API_URL + '/deleteInvite/' + inviteID,
+    config
+  )
+
+  return response.data
+}
+
 const authService = {
   inviteUser,
   register,
@@ -109,6 +124,7 @@ const authService = {
   resetPassword,
   getUsers,
   getPending,
+  deleteInvite,
 }
 
 export default authService

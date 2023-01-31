@@ -255,8 +255,30 @@ const getUsers = asyncHandler(async (req, res) => {
 // @access  Private
 const getPending = asyncHandler(async (req, res) => {
   const pendingInvites = await Invite.find()
-  console.log(pendingInvites)
   res.status(201).json(pendingInvites)
+})
+
+// @desc    Delete an invite
+// @route   GET /api/auth/deleteInvite
+// @access  Private
+const deleteInvite = asyncHandler(async (req, res) => {
+  const id = req.params.id
+  if (!id) {
+    res.status(404)
+    throw new Error('Cannot find invite with that email address')
+  }
+
+  const inviteToDelete = await Invite.findOne({ id })
+
+  if (!inviteToDelete) {
+    res.status(404)
+    throw new Error('Invite not found')
+  }
+
+  const { _id } = inviteToDelete
+  await Invite.findByIdAndDelete({ _id })
+
+  res.status(200).json({ success: true })
 })
 
 module.exports = {
@@ -269,4 +291,5 @@ module.exports = {
   resetPassword,
   getUsers,
   getPending,
+  deleteInvite,
 }
