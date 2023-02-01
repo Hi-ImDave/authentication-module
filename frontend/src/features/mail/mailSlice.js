@@ -12,6 +12,25 @@ const initialState = {
   message: '',
 }
 
+// Send invite email
+export const sendInvite = createAsyncThunk(
+  'mail/sendInvite',
+  async (inviteData, thunkAPI) => {
+    try {
+      return await mailService.sendInvite(inviteData)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 // Send verification email
 export const sendVerification = createAsyncThunk(
   'mail/sendVerification',
@@ -82,6 +101,18 @@ export const mailSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(sendInvite.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(sendInvite.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+      })
+      .addCase(sendInvite.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
       .addCase(sendVerification.pending, (state) => {
         state.isLoading = true
       })

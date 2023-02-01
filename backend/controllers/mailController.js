@@ -6,6 +6,38 @@ const crypto = require('crypto')
 const User = require('../models/userModel')
 const Token = require('../models/tokenModel')
 
+// @desc    Send registration invite link
+// @route   /api/mail/sendInvite
+// @access  Private
+const sendInvite = asyncHandler(async (req, res) => {
+  const { _id, email } = req.body
+  const output = `
+    <p>You've been invited to register an account with the authentication module. Please click the link below to register your account</p>
+    <a href="http://localhost:3000/register/${_id}">Registration here</a>
+  `
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: process.env.NODEMAILER_HOST,
+    port: process.env.NODEMAILER_PORT,
+    auth: {
+      user: process.env.NODEMAILER_USERNAME,
+      pass: process.env.NODEMAILER_PASSWORD,
+    },
+  })
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: '"David Mott" <373cf75d435404>',
+    to: email,
+    subject: 'Hello ✔',
+    text: '',
+    html: output,
+  })
+
+  console.log('Message sent: %s', info.messageId)
+})
+
 // @desc    Send email verification link
 // @route   /api/mail/sendVerification
 // @access  Private
@@ -147,6 +179,7 @@ const resetConfirm = asyncHandler(async (req, res) => {
 })
 
 module.exports = {
+  sendInvite,
   sendVerification,
   resetRequest,
   resetConfirm,

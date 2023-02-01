@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import { FaPlus } from 'react-icons/fa'
 
 import { inviteUser, getPending } from '../../features/auth/authSlice'
+import { sendInvite } from '../../features/mail/mailSlice'
 
 const InviteForm = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +32,10 @@ const InviteForm = () => {
         email,
       }
       const response = await dispatch(inviteUser(data))
+      console.log(response)
+      if (response.payload) {
+        dispatch(sendInvite(response.payload))
+      }
       dispatch(getPending())
       setFormData({ email: '' })
     }
