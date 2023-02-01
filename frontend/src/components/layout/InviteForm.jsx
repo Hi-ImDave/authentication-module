@@ -32,6 +32,7 @@ const InviteForm = () => {
       }
       const response = await dispatch(inviteUser(data))
       dispatch(getPending())
+      setFormData({ email: '' })
     }
   }
 

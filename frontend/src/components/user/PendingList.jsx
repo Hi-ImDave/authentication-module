@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaEdit, FaRegClock, FaRegTrashAlt } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 
 import { getPending, deleteInvite, reset } from '../../features/auth/authSlice'
 import { Spinner } from '../layout/Spinner'
@@ -69,6 +70,7 @@ const PendingList = () => {
                   ) {
                     await dispatch(deleteInvite(invite._id))
                     dispatch(getPending())
+                    toast.success('Invite deleted successfully')
                   }
                 }}
               >
