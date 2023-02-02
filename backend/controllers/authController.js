@@ -53,7 +53,7 @@ const inviteUser = asyncHandler(async (req, res) => {
 // @method  POST
 // @access  Private
 const registerUser = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password } = req.body
+  const { id, firstName, lastName, email, password } = req.body
 
   // Validation
   if (!firstName || !lastName || !email || !password) {
@@ -69,6 +69,25 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('User already exists')
   }
 
+  // Find if invite exists
+  const inviteExists = await Invite.findById({ _id: id })
+
+  const inviteID = inviteExists._id.toHexString()
+
+  if (!inviteExists || inviteID !== id) {
+    res.status(400)
+    throw new Error(
+      'There is no valid invite for this user. Please contact an administrator'
+    )
+  }
+
+  if (email !== inviteExists.email) {
+    res.status(400)
+    throw new Error(
+      'Please use the same email address you were invited to register with'
+    )
+  }
+
   // Hash password
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
@@ -82,6 +101,7 @@ const registerUser = asyncHandler(async (req, res) => {
   })
 
   if (user) {
+    await Invite.findByIdAndDelete({ _id: id })
     res.status(201).json({
       _id: user._id,
       firstName: user.firstName,

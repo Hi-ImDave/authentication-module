@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { FaUser, FaTwitter, FaFacebook } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-toastify'
@@ -18,6 +18,10 @@ const Register = () => {
     password: '',
     password2: '',
   })
+
+  const { id } = useParams()
+
+  console.log(id)
 
   const { firstName, lastName, email, password, password2 } = formData
 
@@ -56,6 +60,7 @@ const Register = () => {
       toast.error('Passwords do not match')
     } else {
       const userData = {
+        id,
         firstName,
         lastName,
         email,
@@ -171,21 +176,6 @@ const Register = () => {
                   />
                 </div>
               </form>
-              {/* <div className='divider'>OR</div>
-              <div className=' flex flex-row justify-around'>
-                <Button
-                  title={<FcGoogle className='md:text-5xl ' />}
-                  className='btn-ghost btn-circle '
-                />
-                <Button
-                  title={<FaTwitter color='#00ACEE' className='md:text-5xl' />}
-                  className='btn-ghost btn-circle '
-                />
-                <Button
-                  title={<FaFacebook color='#3B5998' className='md:text-5xl' />}
-                  className='btn-ghost btn-circle '
-                />
-              </div> */}
             </div>
           </div>
         </div>

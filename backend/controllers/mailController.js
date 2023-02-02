@@ -30,7 +30,7 @@ const sendInvite = asyncHandler(async (req, res) => {
   let info = await transporter.sendMail({
     from: '"David Mott" <373cf75d435404>',
     to: email,
-    subject: 'Hello ✔',
+    subject: "You've been invited to register!",
     text: '',
     html: output,
   })
@@ -62,7 +62,7 @@ const sendVerification = asyncHandler(async (req, res) => {
   let info = await transporter.sendMail({
     from: '"David Mott" <373cf75d435404>',
     to: email,
-    subject: 'Hello ✔',
+    subject: "Don't forget to verify your account!",
     text: '',
     html: output,
   })

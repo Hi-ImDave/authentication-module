@@ -32,7 +32,6 @@ const InviteForm = () => {
         email,
       }
       const response = await dispatch(inviteUser(data))
-      console.log(response)
       if (response.payload) {
         dispatch(sendInvite(response.payload))
       }

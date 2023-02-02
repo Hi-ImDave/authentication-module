@@ -75,14 +75,6 @@ const Navbar = () => {
                 <FaSignInAlt className='mx-1' /> Login
               </Link>
             </div>
-            <div>
-              <Link
-                to='/register'
-                className='btn btn-ghost normal-case text-base md:text-xl'
-              >
-                <FaUser className='mx-1' /> Register
-              </Link>
-            </div>
           </div>
         )}
       </div>

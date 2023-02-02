@@ -117,22 +117,6 @@ const Login = () => {
                 />
               </div>
             </form>
-            <div className='divider'>OR</div>
-            <div className='m-6 flex justify-around '>
-              <Button
-                title={<FcGoogle size='2em' />}
-                className='btn-ghost btn-circle '
-                onClick={onGoogleClick}
-              />
-              <Button
-                title={<FaTwitter size='2em' color='#00ACEE' />}
-                className='btn-ghost btn-circle '
-              />
-              <Button
-                title={<FaFacebook size='2em' color='#3B5998' />}
-                className='btn-ghost btn-circle '
-              />
-            </div>
           </div>
         </div>
       </div>
