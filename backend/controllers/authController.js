@@ -21,12 +21,19 @@ const inviteUser = asyncHandler(async (req, res) => {
     throw new Error('Please enter a valid email address')
   }
 
-  const inviteExists = await Invite.findOne({ email })
-  const userExists = await User.findOne({ email })
+  const sanitizedEmail = email.toLowerCase()
 
-  if (inviteExists || userExists) {
+  const inviteExists = await Invite.findOne({ sanitizedEmail })
+  const userExists = await User.findOne({ sanitizedEmail })
+
+  if (inviteExists) {
     res.status(400)
     throw new Error('This user already has an invite pending')
+  }
+
+  if (userExists) {
+    res.status(400)
+    throw new Error('This user already has an account')
   }
 
   let token = crypto.randomBytes(32).toString('hex')
@@ -34,7 +41,7 @@ const inviteUser = asyncHandler(async (req, res) => {
   const hashedToken = await bcrypt.hash(token, salt)
 
   const newInvite = await Invite.create({
-    email,
+    email: sanitizedEmail,
     token: hashedToken,
     createdAt: Date.now(),
     isUsed: false,
@@ -61,9 +68,9 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('Please include all fields')
   }
 
+  const sanitizedEmail = email.toLowerCase()
   // Find if user already exists
-  const userExists = await User.findOne({ email })
-
+  const userExists = await User.findOne({ email: sanitizedEmail })
   if (userExists) {
     res.status(400)
     throw new Error('User already exists')
@@ -81,7 +88,7 @@ const registerUser = asyncHandler(async (req, res) => {
     )
   }
 
-  if (email !== inviteExists.email) {
+  if (sanitizedEmail !== inviteExists.email.toLowerCase()) {
     res.status(400)
     throw new Error(
       'Please use the same email address you were invited to register with'
@@ -96,7 +103,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     firstName,
     lastName,
-    email,
+    email: sanitizedEmail,
     password: hashedPassword,
   })
 
@@ -122,7 +129,10 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body
-  const user = await User.findOne({ email })
+
+  const sanitizedEmail = email.toLowerCase()
+
+  const user = await User.findOne({ sanitizedEmail })
 
   // Check user and password match
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -154,12 +164,14 @@ const updateUser = asyncHandler(async (req, res) => {
     throw new Error('Please include all fields')
   }
 
+  const sanitizedEmail = email.toLowerCase()
+
   // Update user
   const user = await User.findOneAndUpdate(
     {
       prevEmail,
     },
-    { firstName, lastName, email }
+    { firstName, lastName, sanitizedEmail }
   )
 
   if (user) {
@@ -167,7 +179,7 @@ const updateUser = asyncHandler(async (req, res) => {
       _id: user._id,
       firstName: firstName,
       lastName: lastName,
-      email: email,
+      email: sanitizedEmail,
       isActive: emailUpdated ? false : user.isActive,
       isAdmin: user.isAdmin,
     })
