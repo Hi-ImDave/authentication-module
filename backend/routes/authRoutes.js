@@ -11,6 +11,7 @@ const {
   resetPassword,
   getUsers,
   getPending,
+  deleteUser,
   deleteInvite,
 } = require('../controllers/authController')
 
@@ -33,6 +34,8 @@ router.put('/reset', resetPassword)
 router.get('/getAll', getUsers)
 
 router.get('/pending', getPending)
+
+router.delete('/deleteUser/:id', deleteUser)
 
 router.delete('/deleteInvite/:id', deleteInvite)
 

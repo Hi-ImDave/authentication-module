@@ -99,6 +99,18 @@ const getPending = async () => {
   return response.data
 }
 
+// Delete user
+const deleteUser = async (userID, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  const response = await axios.delete(API_URL + '/deleteUser/' + userID, config)
+
+  return response.data
+}
+
 // Delete pending invite
 const deleteInvite = async (inviteID, token) => {
   const config = {
@@ -124,6 +136,7 @@ const authService = {
   resetPassword,
   getUsers,
   getPending,
+  deleteUser,
   deleteInvite,
 }
 

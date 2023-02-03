@@ -7,9 +7,10 @@ import {
   FaRegTrashAlt,
 } from 'react-icons/fa'
 
+import { toast } from 'react-toastify'
 import Badge from '../layout/Badge'
 
-import { getUsers, reset } from '../../features/auth/authSlice'
+import { getUsers, deleteUser, reset } from '../../features/auth/authSlice'
 import { Spinner } from '../layout/Spinner'
 
 const UserList = () => {
@@ -80,9 +81,23 @@ const UserList = () => {
                 >
                   <FaEdit className='hover:text-warning' />
                 </div>
-                <div className='tooltip tooltip-error' data-tip='Delete user'>
+                <button
+                  className='tooltip tooltip-error'
+                  data-tip='Delete user'
+                  onClick={async () => {
+                    if (
+                      window.confirm(
+                        'Are you sure you want to delete this user?'
+                      )
+                    ) {
+                      await dispatch(deleteUser(user._id))
+                      dispatch(getUsers())
+                      toast.success('User deleted successfully')
+                    }
+                  }}
+                >
                   <FaRegTrashAlt className='hover:text-error' />
-                </div>
+                </button>
               </div>
 
               <div className='absolute space-x-2 bottom-0 right-0 p-4'>
