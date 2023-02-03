@@ -10,7 +10,12 @@ import {
 import { toast } from 'react-toastify'
 import Badge from '../layout/Badge'
 
-import { getUsers, deleteUser, reset } from '../../features/auth/authSlice'
+import {
+  getUsers,
+  deleteUser,
+  muteUser,
+  reset,
+} from '../../features/auth/authSlice'
 import { Spinner } from '../layout/Spinner'
 
 const UserList = () => {
@@ -66,7 +71,16 @@ const UserList = () => {
 
               <p>{user.email}</p>
               <div className='absolute top-5 right-5 flex space-x-2'>
-                <div className='tooltip tooltip-error' data-tip='Mute user'>
+                <div
+                  className='tooltip tooltip-error'
+                  data-tip='Mute/unmute user'
+                  onClick={async () => {
+                    await dispatch(muteUser(user._id))
+                    console.log(user._id)
+                    dispatch(getUsers())
+                    toast.success('Action performed successfully')
+                  }}
+                >
                   <FaMicrophoneSlash className='hover:text-error' />
                 </div>
                 <div

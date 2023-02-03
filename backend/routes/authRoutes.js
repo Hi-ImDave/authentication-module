@@ -13,6 +13,7 @@ const {
   getPending,
   deleteUser,
   deleteInvite,
+  muteUser,
 } = require('../controllers/authController')
 
 const { protect } = require('../middleware/authMiddleware')
@@ -38,5 +39,7 @@ router.get('/pending', getPending)
 router.delete('/deleteUser/:id', deleteUser)
 
 router.delete('/deleteInvite/:id', deleteInvite)
+
+router.put('/muteUser', muteUser)
 
 module.exports = router

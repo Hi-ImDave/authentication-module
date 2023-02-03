@@ -126,6 +126,13 @@ const deleteInvite = async (inviteID, token) => {
   return response.data
 }
 
+// mute/unmute user
+const muteUser = async (userID) => {
+  const response = await axios.put(API_URL + '/muteUser', { userID: userID })
+
+  return response.data
+}
+
 const authService = {
   inviteUser,
   register,
@@ -138,6 +145,7 @@ const authService = {
   getPending,
   deleteUser,
   deleteInvite,
+  muteUser,
 }
 
 export default authService

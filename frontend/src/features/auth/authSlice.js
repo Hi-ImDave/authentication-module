@@ -204,6 +204,25 @@ export const deleteInvite = createAsyncThunk(
   }
 )
 
+// Mute/unmute user
+export const muteUser = createAsyncThunk(
+  'auth/muteUser',
+  async (userID, thunkAPI) => {
+    try {
+      return await authService.muteUser(userID)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -348,9 +367,21 @@ export const authSlice = createSlice({
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.pending.filter((user) => user._id !== action.payload._id)
+        state.users.filter((user) => user._id !== action.payload._id)
       })
       .addCase(deleteUser.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(muteUser.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(muteUser.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+      })
+      .addCase(muteUser.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

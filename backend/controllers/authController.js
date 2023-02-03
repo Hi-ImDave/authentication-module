@@ -313,7 +313,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 })
 
 // @desc    Delete an invite
-// @route   GET /api/auth/deleteInvite
+// @route   GET /api/auth/deleteInvite/:id
 // @access  Private
 const deleteInvite = asyncHandler(async (req, res) => {
   const id = req.params.id
@@ -335,6 +335,23 @@ const deleteInvite = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true })
 })
 
+const muteUser = asyncHandler(async (req, res) => {
+  const { userID } = req.body
+  const user = await User.findOne({
+    _id: userID,
+  })
+
+  if (!user) {
+    console.log(user)
+    res.status(400)
+    throw new Error('User not found')
+  }
+
+  const { _id, isMuted } = user
+  const response = await User.updateOne({ _id }, { isMuted: !isMuted })
+  res.status(200).json({ success: true })
+})
+
 module.exports = {
   inviteUser,
   registerUser,
@@ -347,4 +364,5 @@ module.exports = {
   getPending,
   deleteUser,
   deleteInvite,
+  muteUser,
 }
