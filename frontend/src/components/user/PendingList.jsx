@@ -55,12 +55,17 @@ const PendingList = () => {
             <div className='card-body flex flex-col justify-between'>
               <span>{invite.email}</span>
               <div className='flex flex-row'>
-                <FaRegClock className='hover:text-success text-xl mr-2' />
+                <div
+                  className='tooltip tooltip-bottom tooltip-success'
+                  data-tip='days since invite was sent'
+                >
+                  <FaRegClock className='hover:text-success text-xl mr-2' />
+                </div>
                 {getTimeElapsed(invite.createdAt)}d
               </div>
 
               <button
-                className=' tooltip tooltip-error absolute top-5 right-5 flex space-x-2'
+                className=' tooltip  tooltip-error absolute top-5 right-5 flex space-x-2'
                 data-tip='Delete invite'
                 onClick={async () => {
                   if (
