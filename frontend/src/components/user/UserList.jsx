@@ -68,17 +68,19 @@ const UserList = () => {
                 {' '}
                 {`${user.firstName} ${user.lastName}`}
               </h2>
-
               <p>{user.email}</p>
               <div className='absolute top-5 right-5 flex space-x-2'>
                 <div
                   className='tooltip tooltip-error'
-                  data-tip='Mute/unmute user'
+                  data-tip={user.isMuted ? 'unmute user' : 'mute user'}
                   onClick={async () => {
                     await dispatch(muteUser(user._id))
-                    console.log(user._id)
                     dispatch(getUsers())
-                    toast.success('Action performed successfully')
+                    toast.success(
+                      user.isMuted
+                        ? 'User has been unmuted'
+                        : 'User has been muted'
+                    )
                   }}
                 >
                   <FaMicrophoneSlash className='hover:text-error' />

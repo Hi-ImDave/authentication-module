@@ -274,7 +274,6 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.user = null
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true
@@ -300,7 +299,7 @@ export const authSlice = createSlice({
       .addCase(verify.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.user = action.payload
+        state.user = action.payload // ??? set to null?
       })
       .addCase(verify.rejected, (state, action) => {
         state.isLoading = false
