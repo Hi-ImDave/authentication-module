@@ -5,7 +5,6 @@ import mailService from './mailService'
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
-  user: user ? user : null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -119,13 +118,11 @@ export const mailSlice = createSlice({
       .addCase(sendVerification.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.user = action.payload
       })
       .addCase(sendVerification.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.user = null
       })
       .addCase(resetRequest.pending, (state) => {
         state.isLoading = true
@@ -133,13 +130,11 @@ export const mailSlice = createSlice({
       .addCase(resetRequest.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.user = action.payload
       })
       .addCase(resetRequest.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.user = null
       })
       .addCase(resetConfirm.pending, (state) => {
         state.isLoading = true
@@ -147,13 +142,11 @@ export const mailSlice = createSlice({
       .addCase(resetConfirm.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.user = action.payload
       })
       .addCase(resetConfirm.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.user = null
       })
   },
 })

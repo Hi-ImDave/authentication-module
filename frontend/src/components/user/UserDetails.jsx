@@ -21,6 +21,8 @@ const UserDetails = () => {
     isActive: user.isActive,
   })
   const prevEmail = user.email
+  const prevFirstName = user.firstName
+  const prevLastName = user.lastName
 
   const dispatch = useDispatch()
 
@@ -36,6 +38,15 @@ const UserDetails = () => {
 
   const onSubmit = (event) => {
     event.preventDefault()
+
+    if (
+      firstName == prevFirstName &&
+      lastName == prevLastName &&
+      email == prevEmail
+    ) {
+      return onCancel
+    }
+
     const userData = {
       _id,
       firstName,
@@ -100,20 +111,32 @@ const UserDetails = () => {
 
           {changeDetails ? (
             <div className='flex absolute top-3 right-3'>
-              <FaCheck
-                className='text-4xl  hover:text-success'
-                onClick={onEditClick}
-              />
-              <FaTimes
-                className='text-4xl  hover:text-error'
-                onClick={onCancel}
-              />
+              <div
+                className='tooltip tooltip-success'
+                data-tip='submit changes'
+              >
+                <FaCheck
+                  className='text-4xl  hover:text-success'
+                  onClick={onEditClick}
+                />
+              </div>
+              <div className='tooltip tooltip-error' data-tip='discard changes'>
+                <FaTimes
+                  className='text-4xl  hover:text-error'
+                  onClick={onCancel}
+                />
+              </div>
             </div>
           ) : (
-            <FaEdit
-              className='text-4xl absolute top-3 right-3 hover:text-violet-600'
-              onClick={onEditClick}
-            />
+            <div
+              className='tooltip tooltip-primary absolute top-3 right-3'
+              data-tip='edit user details'
+            >
+              <FaEdit
+                className='text-4xl  hover:text-violet-600'
+                onClick={onEditClick}
+              />
+            </div>
           )}
         </div>
         <div className='w-11/12 ml-5'>

@@ -144,6 +144,7 @@ const loginUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id, '365d'),
       isAdmin: user.isAdmin,
       isActive: user.isActive,
+      isMuted: user.isMuted,
     })
   } else {
     res.status(401)
@@ -156,6 +157,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access  Public
 const updateUser = asyncHandler(async (req, res) => {
   const { _id, firstName, lastName, email, prevEmail } = req.body
+
   const emailUpdated = email !== prevEmail
 
   // Validation
@@ -167,21 +169,22 @@ const updateUser = asyncHandler(async (req, res) => {
   const sanitizedEmail = email.toLowerCase()
 
   // Update user
-  const user = await User.findOneAndUpdate(
+  const updatedUser = await User.findOneAndUpdate(
     {
       prevEmail,
     },
     { firstName, lastName, sanitizedEmail }
   )
 
-  if (user) {
+  if (updatedUser) {
     res.status(201).json({
-      _id: user._id,
+      _id: updatedUser._id,
       firstName: firstName,
       lastName: lastName,
       email: sanitizedEmail,
-      isActive: emailUpdated ? false : user.isActive,
-      isAdmin: user.isAdmin,
+      isActive: emailUpdated ? false : updatedUser.isActive,
+      isAdmin: updatedUser.isAdmin,
+      isMuted: updatedUser.isMuted,
     })
   } else {
     res.status(400)
@@ -232,6 +235,7 @@ const verify = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isActive: user.isActive,
+      isMuted: user.isMuted,
     })
   }
 })
@@ -266,6 +270,8 @@ const resetPassword = asyncHandler(async (req, res) => {
       lastName: updatedUser.lastName,
       email: updatedUser.email,
       isActive: updatedUser.isActive,
+      isAdmin: updatedUser.isAdmin,
+      isMuted: updatedUser.isMuted,
     })
   } else {
     res.status(400)
@@ -342,7 +348,6 @@ const muteUser = asyncHandler(async (req, res) => {
   })
 
   if (!user) {
-    console.log(user)
     res.status(400)
     throw new Error('User not found')
   }

@@ -16,7 +16,7 @@ const PendingList = () => {
       if (isSuccess) {
         dispatch(reset())
       }
-      dispatch(reset())
+      // dispatch(reset())
     }
   }, [dispatch, isSuccess])
 
@@ -43,7 +43,7 @@ const PendingList = () => {
   return (
     <div className='p-10 w-3/4'>
       <h2 className='text-center text-4xl mb-4 text-black font-semibold underline'>
-        Pending Invites
+        {pending.length ? 'Pending Invites' : 'No Pending Invites'}
       </h2>
 
       <div className='grid grid-cols-2 gap-3  '>

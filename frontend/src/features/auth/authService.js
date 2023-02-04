@@ -50,6 +50,7 @@ const update = async (userData) => {
         token: userData.token,
         isActive: response.data.isActive,
         isAdmin: response.data.isAdmin,
+        isMuted: response.data.isMuted,
       })
     )
   }
