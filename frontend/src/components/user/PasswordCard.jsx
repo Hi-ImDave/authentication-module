@@ -8,6 +8,7 @@ import { changePassword, reset } from '../../features/auth/authSlice'
 const PasswordCard = () => {
   const { user, isLoading, isSuccess } = useSelector((state) => state.auth)
   const [changeDetails, setChangeDetails] = useState(false)
+  const [hidePass, setHidePass] = useState(true)
   const [formData, setFormData] = useState({
     _id: user._id,
     password: '',
@@ -63,26 +64,39 @@ const PasswordCard = () => {
         <div className=' flex flex-row justify-start'>
           <div className=' flex flex-row justify-start'>
             {changeDetails ? (
-              <div className='flex absolute top-3 right-3'>
-                <div
-                  className='tooltip tooltip-success'
-                  data-tip='submit changes'
-                >
-                  <FaCheck
-                    className='text-4xl  hover:text-success'
-                    onClick={onEditClick}
-                  />
+              <>
+                <div className='absolute top-3 left-3'>
+                  <div
+                    className='tooltip'
+                    data-tip={hidePass ? 'show password' : 'hide password'}
+                    onClick={() => {
+                      setHidePass((prevState) => !prevState)
+                    }}
+                  >
+                    {hidePass ? <FaEyeSlash /> : <FaEye />}
+                  </div>
                 </div>
-                <div
-                  className='tooltip tooltip-error'
-                  data-tip='discard changes'
-                >
-                  <FaTimes
-                    className='text-4xl  hover:text-error'
-                    onClick={onCancel}
-                  />
+                <div className='flex absolute top-3 right-3'>
+                  <div
+                    className='tooltip tooltip-success'
+                    data-tip='submit changes'
+                  >
+                    <FaCheck
+                      className='text-4xl  hover:text-success'
+                      onClick={onEditClick}
+                    />
+                  </div>
+                  <div
+                    className='tooltip tooltip-error'
+                    data-tip='discard changes'
+                  >
+                    <FaTimes
+                      className='text-4xl  hover:text-error'
+                      onClick={onCancel}
+                    />
+                  </div>
                 </div>
-              </div>
+              </>
             ) : (
               <div
                 className='tooltip tooltip-primary absolute top-3 right-3'
@@ -98,7 +112,7 @@ const PasswordCard = () => {
           <div className='w-5/6 ml-5'>
             <div className=' grid grid-cols-2 gap-2 justify-items-start'>
               <input
-                type='password'
+                type={hidePass ? 'password' : 'text'}
                 id='password'
                 className={
                   !changeDetails
@@ -110,7 +124,7 @@ const PasswordCard = () => {
                 disabled={!changeDetails}
               />
               <input
-                type='text'
+                type={hidePass ? 'password' : 'text'}
                 id='passwordConfirm'
                 className={
                   !changeDetails
