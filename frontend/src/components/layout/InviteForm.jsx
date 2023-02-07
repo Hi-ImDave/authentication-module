@@ -45,7 +45,7 @@ const InviteForm = () => {
   return (
     <div
       className={`card ${
-        viewMode ? 'bg-cyan-900' : 'bg-slate-700'
+        viewMode ? 'bg-cyan-900' : 'bg-sky-900'
       } shadow-xl form-control h-min w-3/4 mt-24 ml-8`}
     >
       <div className='card-body '>

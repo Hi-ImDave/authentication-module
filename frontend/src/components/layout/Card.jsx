@@ -1,12 +1,17 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
+import { Link } from 'react-router-dom'
 
 import Button from './Button'
 
 const Card = ({ title, description, navigate, className }) => {
+  const { viewMode } = useSelector((state) => state.preference)
+
   return (
     <div
-      className={`card  bg-cyan-900 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105 ${className}`}
+      className={`card  ${
+        viewMode ? 'bg-cyan-900' : 'bg-sky-900'
+      } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105 ${className}`}
     >
       <div className='card-body items-center text-center'>
         <h2 className='card-title'>{title}</h2>

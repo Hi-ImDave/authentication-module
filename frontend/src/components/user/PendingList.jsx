@@ -56,7 +56,7 @@ const PendingList = () => {
           <div
             key={invite._id}
             className={`card  ${
-              viewMode ? 'bg-cyan-900' : 'bg-slate-700'
+              viewMode ? 'bg-cyan-900' : 'bg-sky-900'
             } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
           >
             <div className='card-body flex flex-col justify-between'>

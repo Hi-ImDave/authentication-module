@@ -62,7 +62,7 @@ const UserList = () => {
             <div
               key={user._id}
               className={`card w-96 ${
-                viewMode ? 'bg-cyan-900' : 'bg-slate-700'
+                viewMode ? 'bg-cyan-900' : 'bg-sky-900'
               } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
             >
               <div className='card-body'>
