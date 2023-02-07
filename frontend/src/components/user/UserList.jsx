@@ -56,7 +56,7 @@ const UserList = () => {
           users.map((user) => (
             <div
               key={user._id}
-              className='card w-96 bg-base-100 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105'
+              className='card w-96 bg-cyan-900 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105'
             >
               <div className='card-body'>
                 {user.email === email && (

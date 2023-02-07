@@ -41,7 +41,7 @@ const InviteForm = () => {
   }
 
   return (
-    <div className='card bg-base-100 shadow-xl form-control h-min w-3/4 mt-24 ml-8'>
+    <div className='card bg-cyan-900 shadow-xl form-control h-min w-3/4 mt-24 ml-8'>
       <div className='card-body '>
         <form onSubmit={onSubmit}>
           <div className='form-control flex flex-row justify-between'>

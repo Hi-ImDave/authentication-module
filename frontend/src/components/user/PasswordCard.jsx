@@ -59,7 +59,7 @@ const PasswordCard = () => {
   }
 
   return (
-    <div className='card w-max bg-base-100 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105'>
+    <div className='card w-max bg-cyan-900 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105'>
       <div className='card-body '>
         <div className=' flex flex-row justify-start'>
           <div className=' flex flex-row justify-start'>
@@ -114,6 +114,7 @@ const PasswordCard = () => {
               <input
                 type={hidePass ? 'password' : 'text'}
                 id='password'
+                placeholder='new password'
                 className={
                   !changeDetails
                     ? 'input w-full max-w-xs '
@@ -126,6 +127,7 @@ const PasswordCard = () => {
               <input
                 type={hidePass ? 'password' : 'text'}
                 id='passwordConfirm'
+                placeholder='confirm new password'
                 className={
                   !changeDetails
                     ? 'input w-full max-w-xs'
