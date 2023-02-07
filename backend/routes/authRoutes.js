@@ -9,6 +9,7 @@ const {
   uploadImage,
   verify,
   resetPassword,
+  changePassword,
   getUsers,
   getPending,
   deleteUser,
@@ -31,6 +32,8 @@ router.post('/me', uploadImage)
 router.put('/verify', verify)
 
 router.put('/reset', resetPassword)
+
+router.put('/changePass', changePassword)
 
 router.get('/getAll', getUsers)
 

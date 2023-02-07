@@ -33,7 +33,7 @@ const UserList = () => {
       if (isSuccess) {
         dispatch(reset())
       }
-      // dispatch(reset())
+      dispatch(reset())
     }
   }, [dispatch, isSuccess])
 

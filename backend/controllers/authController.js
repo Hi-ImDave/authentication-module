@@ -240,7 +240,7 @@ const verify = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    Reset password
+// @desc    Reset password from 'forgot password'
 // @route   /api/auth/reset
 // @method  PUT
 // @access  Private
@@ -276,6 +276,40 @@ const resetPassword = asyncHandler(async (req, res) => {
   } else {
     res.status(400)
     throw new Error('Invalid user data')
+  }
+})
+
+// @desc    change password from profile
+// @route   /api/auth/changePass
+// @method  PUT
+// @access  Private
+const changePassword = asyncHandler(async (req, res) => {
+  const { _id, password, passwordConfirm } = req.body
+  console.log(_id)
+  const user = await User.findById(_id)
+  if (!user) {
+    res.status(400)
+    throw new Error('Invalid user data')
+  }
+  const passwordsMatch = password === passwordConfirm
+  if (!passwordsMatch) {
+    res.status(400)
+    throw new Error('Please make sure both passwords match')
+  }
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(password, salt)
+  // Update user
+  const updatedUser = await User.findOneAndUpdate(
+    { _id },
+    { password: hashedPassword }
+  )
+  if (updatedUser) {
+    res.status(201).json(updatedUser)
+  } else {
+    res.status(400)
+    throw new Error(
+      'An error occured while trying to update your password. Please try again'
+    )
   }
 })
 
@@ -365,6 +399,7 @@ module.exports = {
   verify,
   uploadImage,
   resetPassword,
+  changePassword,
   getUsers,
   getPending,
   deleteUser,

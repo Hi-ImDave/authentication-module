@@ -86,6 +86,13 @@ const resetPassword = async (user) => {
   return response.data
 }
 
+// change password
+const changePassword = async (user) => {
+  const response = await axios.put(API_URL + '/changePass', user)
+
+  return response.data
+}
+
 // Get all users
 const getUsers = async () => {
   const response = await axios.get(API_URL + '/getAll')
@@ -142,6 +149,7 @@ const authService = {
   login,
   verify,
   resetPassword,
+  changePassword,
   getUsers,
   getPending,
   deleteUser,
