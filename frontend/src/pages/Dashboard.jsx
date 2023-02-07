@@ -1,8 +1,16 @@
+import { useSelector } from 'react-redux'
+
 import Card from '../components/layout/Card'
 
 const Dashboard = () => {
+  const { viewMode } = useSelector((state) => state.preference)
+
   return (
-    <div className='hero min-h-screen bg-white bg-opacity-80 '>
+    <div
+      className={`hero min-h-screen ${
+        viewMode ? 'bg-white' : 'bg-slate-900'
+      } bg-opacity-80 `}
+    >
       <div className='flex justify-center content-center my-7'>
         <div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  lg:gap-6 gap-4 '>
           <Card

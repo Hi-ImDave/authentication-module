@@ -7,6 +7,8 @@ import { inviteUser, getPending } from '../../features/auth/authSlice'
 import { sendInvite } from '../../features/mail/mailSlice'
 
 const InviteForm = () => {
+  const { viewMode } = useSelector((state) => state.preference)
+
   const [formData, setFormData] = useState({
     email: '',
   })
@@ -41,7 +43,11 @@ const InviteForm = () => {
   }
 
   return (
-    <div className='card bg-cyan-900 shadow-xl form-control h-min w-3/4 mt-24 ml-8'>
+    <div
+      className={`card ${
+        viewMode ? 'bg-cyan-900' : 'bg-slate-700'
+      } shadow-xl form-control h-min w-3/4 mt-24 ml-8`}
+    >
       <div className='card-body '>
         <form onSubmit={onSubmit}>
           <div className='form-control flex flex-row justify-between'>

@@ -10,6 +10,8 @@ import { sendVerification } from '../../features/mail/mailSlice'
 
 const UserDetails = () => {
   const { user, isLoading, isSuccess } = useSelector((state) => state.auth)
+  const { viewMode } = useSelector((state) => state.preference)
+
   const [changeDetails, setChangeDetails] = useState(false)
   const [formData, setFormData] = useState({
     _id: user._id,
@@ -102,7 +104,11 @@ const UserDetails = () => {
   }
 
   return (
-    <div className='card w-max bg-cyan-900 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105'>
+    <div
+      className={`card w-max ${
+        viewMode ? 'bg-cyan-900' : 'bg-slate-700'
+      } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
+    >
       <div className='card-body '>
         <div className=' flex flex-row justify-start'>
           <div className='m-5 '>

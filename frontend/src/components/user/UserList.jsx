@@ -22,6 +22,7 @@ const UserList = () => {
   const { user, users, isLoading, isSuccess } = useSelector(
     (state) => state.auth
   )
+  const { viewMode } = useSelector((state) => state.preference)
 
   const { email } = user
   const currentUser = user._id
@@ -47,7 +48,11 @@ const UserList = () => {
 
   return (
     <div className='p-10 w-3/5'>
-      <h2 className='text-center text-4xl mb-4 text-black font-semibold underline'>
+      <h2
+        className={`text-center text-4xl mb-4 ${
+          viewMode && 'text-black'
+        } font-semibold underline`}
+      >
         Active Users
       </h2>
 
@@ -56,7 +61,9 @@ const UserList = () => {
           users.map((user) => (
             <div
               key={user._id}
-              className='card w-96 bg-cyan-900 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105'
+              className={`card w-96 ${
+                viewMode ? 'bg-cyan-900' : 'bg-slate-700'
+              } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
             >
               <div className='card-body'>
                 {user.email === email && (

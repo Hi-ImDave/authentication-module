@@ -1,10 +1,17 @@
+import { useSelector } from 'react-redux'
 import UserDetails from '../components/user/UserDetails'
 import PasswordCard from '../components/user/PasswordCard'
 
 const Profile = () => {
+  const { viewMode } = useSelector((state) => state.preference)
+
   return (
     <>
-      <div className='min-h-screen bg-white bg-opacity-80 p-8 space-y-5'>
+      <div
+        className={`min-h-screen ${
+          viewMode ? 'bg-white' : 'bg-slate-900'
+        } bg-opacity-80 p-8 space-y-5`}
+      >
         <UserDetails />
         <PasswordCard />
       </div>

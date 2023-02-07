@@ -7,6 +7,8 @@ import { changePassword, reset } from '../../features/auth/authSlice'
 
 const PasswordCard = () => {
   const { user, isLoading, isSuccess } = useSelector((state) => state.auth)
+  const { viewMode } = useSelector((state) => state.preference)
+
   const [changeDetails, setChangeDetails] = useState(false)
   const [hidePass, setHidePass] = useState(true)
   const [formData, setFormData] = useState({
@@ -59,7 +61,11 @@ const PasswordCard = () => {
   }
 
   return (
-    <div className='card w-max bg-cyan-900 shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105'>
+    <div
+      className={`card w-max ${
+        viewMode ? 'bg-cyan-900' : 'bg-slate-700'
+      } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
+    >
       <div className='card-body '>
         <div className=' flex flex-row justify-start'>
           <div className=' flex flex-row justify-start'>

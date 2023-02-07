@@ -1,18 +1,21 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { FaSignInAlt, FaSignOutAlt, FaRegMoon, FaRegSun } from 'react-icons/fa'
+import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 
 import VerifyEmailBar from './VerifyEmailBar'
 
 import { logout, reset } from '../../features/auth/authSlice'
 import Dropdown from './Dropdown'
+import DarkMode from './DarkMode'
 
 const Navbar = () => {
+  const { user } = useSelector((state) => state.auth)
+  const { viewMode } = useSelector((state) => state.preference)
+
   const [darkMode, setDarkMode] = useState(true)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { user } = useSelector((state) => state.auth)
 
   const onLogout = () => {
     dispatch(logout())
@@ -22,7 +25,11 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='navbar bg-cyan-900 text-white'>
+      <div
+        className={`navbar ${
+          viewMode ? 'bg-cyan-900' : 'bg-slate-700'
+        } text-white`}
+      >
         <div className='navbar-start'>{user && <Dropdown />}</div>
         <div className='navbar-center'>
           <Link
@@ -33,21 +40,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className='navbar-end space-x-6'>
-          <div
-            onClick={() => {
-              setDarkMode((prevState) => !prevState)
-            }}
-          >
-            {darkMode ? (
-              <div>
-                <FaRegMoon />
-              </div>
-            ) : (
-              <div>
-                <FaRegSun />
-              </div>
-            )}
-          </div>
+          <DarkMode />
           <div>
             {user ? (
               <div onClick={onLogout}>
