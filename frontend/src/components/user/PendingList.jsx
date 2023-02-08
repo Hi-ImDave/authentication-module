@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { FaEdit, FaRegClock, FaRegTrashAlt } from 'react-icons/fa'
+import { FaRegClock, FaRegTrashAlt } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
 import { getPending, deleteInvite, reset } from '../../features/auth/authSlice'
@@ -31,7 +31,6 @@ const PendingList = () => {
 
   const getTimeElapsed = (date) => {
     const myDate = new Date(date)
-    const offset = myDate.getTimezoneOffset() * 60 * 1000
 
     const withOffset = myDate.getTime()
 

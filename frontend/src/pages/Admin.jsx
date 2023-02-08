@@ -4,8 +4,6 @@ import UserList from '../components/user/UserList'
 import InviteForm from '../components/layout/InviteForm'
 import PendingList from '../components/user/PendingList'
 
-import { FaUsers, FaUserPlus } from 'react-icons/fa'
-
 const Admin = () => {
   const { viewMode } = useSelector((state) => state.preference)
 

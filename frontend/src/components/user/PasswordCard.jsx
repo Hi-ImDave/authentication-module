@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import { changePassword, reset } from '../../features/auth/authSlice'
 
 const PasswordCard = () => {
-  const { user, isLoading, isSuccess } = useSelector((state) => state.auth)
+  const { user, isSuccess } = useSelector((state) => state.auth)
   const { viewMode } = useSelector((state) => state.preference)
 
   const [changeDetails, setChangeDetails] = useState(false)

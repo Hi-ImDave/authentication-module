@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { FaSignInAlt, FaTwitter, FaFacebook } from 'react-icons/fa'
-import { FcGoogle } from 'react-icons/fc'
+import { FaSignInAlt } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
@@ -43,10 +42,6 @@ const Login = () => {
       ...prevState,
       [event.target.name]: event.target.value,
     }))
-  }
-
-  const onGoogleClick = () => {
-    console.log('google')
   }
 
   const onSubmit = (event) => {

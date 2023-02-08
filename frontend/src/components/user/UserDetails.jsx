@@ -42,9 +42,9 @@ const UserDetails = () => {
     event.preventDefault()
 
     if (
-      firstName == prevFirstName &&
-      lastName == prevLastName &&
-      email == prevEmail
+      firstName === prevFirstName &&
+      lastName === prevLastName &&
+      email === prevEmail
     ) {
       return onCancel
     }
