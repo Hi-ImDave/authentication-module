@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { HiMenuAlt2 } from 'react-icons/hi'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const Dropdown = () => {
   const { user } = useSelector((state) => state.auth)

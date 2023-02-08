@@ -1,8 +1,8 @@
-const Avatar = ({ profilePicture }) => {
+const Avatar = ({ profilePicture, altDescription }) => {
   return (
     <div className='avatar'>
       <div className='w-24 rounded-full'>
-        <img src={profilePicture} />
+        <img src={profilePicture} alt={altDescription} />
       </div>
     </div>
   )

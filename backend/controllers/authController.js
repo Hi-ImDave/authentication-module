@@ -23,8 +23,8 @@ const inviteUser = asyncHandler(async (req, res) => {
 
   const sanitizedEmail = email.toLowerCase()
 
-  const inviteExists = await Invite.findOne({ sanitizedEmail })
-  const userExists = await User.findOne({ sanitizedEmail })
+  const inviteExists = await Invite.findOne({ email: sanitizedEmail })
+  const userExists = await User.findOne({ email: sanitizedEmail })
 
   if (inviteExists) {
     res.status(400)
@@ -174,7 +174,7 @@ const updateUser = asyncHandler(async (req, res) => {
     {
       prevEmail,
     },
-    { firstName, lastName, sanitizedEmail }
+    { firstName, lastName, email: sanitizedEmail }
   )
 
   if (updatedUser) {

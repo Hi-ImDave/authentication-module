@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import mailService from './mailService'
 
-const user = JSON.parse(localStorage.getItem('user'))
-
 const initialState = {
   isError: false,
   isSuccess: false,
