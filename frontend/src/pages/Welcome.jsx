@@ -1,12 +1,19 @@
 // MODULES
+import { useSelector } from 'react-redux'
 
 // PAGES
 
 // COMPONENTS
 
 const Welcome = () => {
+  const { viewMode } = useSelector((state) => state.preference)
+
   return (
-    <div className='hero min-h-screen bg-white bg-opacity-80'>
+    <div
+      className={`hero min-h-screen ${
+        viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+      } bg-opacity-80`}
+    >
       <div className='hero-content text-center text-neutral-content'>
         <div className='max-w-md'>
           <h1 className='mb-5 text-5xl font-bold'>Authentication Module</h1>

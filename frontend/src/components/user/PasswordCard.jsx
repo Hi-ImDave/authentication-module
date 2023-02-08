@@ -63,7 +63,7 @@ const PasswordCard = () => {
   return (
     <div
       className={`card w-max ${
-        viewMode ? 'bg-cyan-900' : 'bg-sky-900'
+        viewMode ? 'bg-lightModeCard' : 'bg-darkModeCard'
       } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
     >
       <div className='card-body '>

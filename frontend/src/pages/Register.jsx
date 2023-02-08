@@ -11,6 +11,11 @@ import { Spinner } from '../components/layout/Spinner'
 import Button from '../components/layout/Button.jsx'
 
 const Register = () => {
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  )
+  const { viewMode } = useSelector((state) => state.preference)
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -28,10 +33,6 @@ const Register = () => {
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
-
-  const { user, isLoading, isSuccess, isError, message } = useSelector(
-    (state) => state.auth
-  )
 
   useEffect(() => {
     if (isError) {
@@ -85,7 +86,11 @@ const Register = () => {
 
   return (
     <>
-      <div className='hero min-h-screen bg-white bg-opacity-80'>
+      <div
+        className={`hero min-h-screen ${
+          viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+        } bg-opacity-80`}
+      >
         <div className='hero-content flex-col'>
           <div className='text-center flex '>
             <FaUser className='mr-3 text-2xl  md:text-5xl font-bold' />

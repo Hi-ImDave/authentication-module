@@ -132,7 +132,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const sanitizedEmail = email.toLowerCase()
 
-  const user = await User.findOne({ sanitizedEmail })
+  const user = await User.findOne({ email: sanitizedEmail })
 
   // Check user and password match
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -145,6 +145,7 @@ const loginUser = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin,
       isActive: user.isActive,
       isMuted: user.isMuted,
+      settings: user.settings,
     })
   } else {
     res.status(401)

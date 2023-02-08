@@ -10,7 +10,11 @@ const Admin = () => {
   const { viewMode } = useSelector((state) => state.preference)
 
   return (
-    <div className={`${viewMode ? 'bg-white' : 'bg-slate-900'} bg-opacity-80`}>
+    <div
+      className={`${
+        viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+      } bg-opacity-80`}
+    >
       <div className='flex justify-around'>
         <div className='w-2/5'>
           <InviteForm />

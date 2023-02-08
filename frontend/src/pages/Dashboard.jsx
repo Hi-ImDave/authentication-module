@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
     <div
       className={`hero min-h-screen ${
-        viewMode ? 'bg-white' : 'bg-slate-900'
+        viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
       } bg-opacity-80 `}
     >
       <div className='flex justify-center content-center my-7'>

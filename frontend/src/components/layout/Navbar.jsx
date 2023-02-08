@@ -16,7 +16,7 @@ const Navbar = () => {
     <>
       <div
         className={`navbar ${
-          viewMode ? 'bg-cyan-900' : 'bg-slate-700'
+          viewMode ? 'bg-lightModeCard' : 'bg-darkModeCard'
         } text-white`}
       >
         <div className='navbar-start'>{user && <Dropdown />}</div>

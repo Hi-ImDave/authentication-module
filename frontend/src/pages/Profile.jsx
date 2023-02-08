@@ -9,7 +9,7 @@ const Profile = () => {
     <>
       <div
         className={`min-h-screen ${
-          viewMode ? 'bg-white' : 'bg-slate-900'
+          viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
         } bg-opacity-80 p-8 space-y-5`}
       >
         <UserDetails />

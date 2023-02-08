@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useParams, useNavigate } from 'react-router-dom'
 
@@ -10,6 +10,8 @@ import { resetConfirm } from '../features/mail/mailSlice'
 import Button from '../components/layout/Button.jsx'
 
 const ResetPass = () => {
+  const { viewMode } = useSelector((state) => state.preference)
+
   const [formData, setFormData] = useState({
     password: '',
     password2: '',
@@ -56,7 +58,11 @@ const ResetPass = () => {
 
   return (
     <>
-      <div className='hero min-h-screen bg-white bg-opacity-80'>
+      <div
+        className={`hero min-h-screen ${
+          viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+        } bg-opacity-80`}
+      >
         <div className='hero-content flex-col '>
           <div className='text-center '>
             <h1 className='text-2xl font-bold'>Please choose a new password</h1>

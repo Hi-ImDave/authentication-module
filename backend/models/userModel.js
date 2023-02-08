@@ -38,6 +38,13 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    settings: {
+      darkMode: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+    },
   },
   {
     timestamps: true,

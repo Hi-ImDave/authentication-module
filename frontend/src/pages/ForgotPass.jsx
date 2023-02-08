@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { resetRequest } from '../features/mail/mailSlice.js'
@@ -8,6 +8,8 @@ import { toast } from 'react-toastify'
 import Button from '../components/layout/Button.jsx'
 
 const ForgotPass = () => {
+  const { viewMode } = useSelector((state) => state.preference)
+
   const [formData, setFormData] = useState({
     email: '',
   })
@@ -34,7 +36,11 @@ const ForgotPass = () => {
 
   return (
     <>
-      <div className='hero min-h-screen bg-white bg-opacity-80'>
+      <div
+        className={`hero min-h-screen ${
+          viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+        } bg-opacity-80`}
+      >
         <div className='hero-content flex-col '>
           <div className='text-center '>
             <h1 className='text-2xl font-bold'>

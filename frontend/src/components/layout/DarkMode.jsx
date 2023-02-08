@@ -6,7 +6,9 @@ import { FaRegMoon, FaRegSun } from 'react-icons/fa'
 import { setViewMode } from '../../features/preferences/preferenceSlice'
 
 const DarkMode = () => {
-  const [darkMode, setDarkMode] = useState(true)
+  const { user } = useSelector((state) => state.auth)
+  console.log(user.settings.darkMode)
+  const [darkMode, setDarkMode] = useState(user.settings.darkMode)
   const { viewMode } = useSelector((state) => state.preference)
 
   const dispatch = useDispatch()

@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
 import { useParams, useNavigate } from 'react-router-dom'
@@ -6,6 +6,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { reset, verify } from '../features/auth/authSlice'
 
 const Verify = () => {
+  const { viewMode } = useSelector((state) => state.preference)
+
   const { verificationId } = useParams()
   const userData = { verificationId }
   const dispatch = useDispatch()
@@ -21,7 +23,11 @@ const Verify = () => {
   })
 
   return (
-    <div className='min-h-screen bg-white bg-opacity-80 text-center'>
+    <div
+      className={`min-h-screen ${
+        viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+      } bg-opacity-80 text-center`}
+    >
       <form className='card-body'>
         <p>Thank you for verifying your account</p>
         <p>You will now be redirected to the login page</p>
