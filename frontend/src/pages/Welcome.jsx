@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux'
 // COMPONENTS
 
 const Welcome = () => {
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   return (
     <div
       className={`hero min-h-screen ${
-        viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+        viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
       } bg-opacity-80`}
     >
       <div className='hero-content text-center text-neutral-content'>

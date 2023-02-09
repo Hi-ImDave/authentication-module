@@ -7,7 +7,7 @@ import { changePassword, reset } from '../../features/auth/authSlice'
 
 const PasswordCard = () => {
   const { user, isSuccess } = useSelector((state) => state.auth)
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   const [changeDetails, setChangeDetails] = useState(false)
   const [hidePass, setHidePass] = useState(true)
@@ -63,7 +63,7 @@ const PasswordCard = () => {
   return (
     <div
       className={`card w-max ${
-        viewMode ? 'bg-lightModeCard' : 'bg-darkModeCard'
+        viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
       } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
     >
       <div className='card-body '>

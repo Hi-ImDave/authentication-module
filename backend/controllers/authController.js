@@ -117,6 +117,7 @@ const registerUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id, '365d'),
       isAdmin: user.isAdmin,
       isActive: user.isActive,
+      settings: user.settings,
     })
   } else {
     res.status(400)
@@ -186,6 +187,7 @@ const updateUser = asyncHandler(async (req, res) => {
       isActive: emailUpdated ? false : updatedUser.isActive,
       isAdmin: updatedUser.isAdmin,
       isMuted: updatedUser.isMuted,
+      settings: updatedUser.settings,
     })
   } else {
     res.status(400)
@@ -273,6 +275,7 @@ const resetPassword = asyncHandler(async (req, res) => {
       isActive: updatedUser.isActive,
       isAdmin: updatedUser.isAdmin,
       isMuted: updatedUser.isMuted,
+      settings: updatedUser.settings,
     })
   } else {
     res.status(400)

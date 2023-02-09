@@ -2,20 +2,21 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import preferenceService from './preferenceService'
 
+const user = JSON.parse(localStorage.getItem('user'))
+
 const initialState = {
-  viewMode: false,
+  viewDark: user.settings.darkMode,
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
 }
 
-export const setViewMode = createAsyncThunk(
-  'preference/viewMode',
+export const setViewDark = createAsyncThunk(
+  'preference/viewDark',
   async (data, thunkAPI) => {
     try {
-      console.log(data)
-      return await preferenceService.setViewMode(data)
+      return await preferenceService.setViewDark(data)
     } catch (error) {
       const message =
         (error.response &&
@@ -34,7 +35,6 @@ export const preferenceSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.viewMode = false
       state.isLoading = false
       state.isError = false
       state.isSuccess = false
@@ -43,15 +43,15 @@ export const preferenceSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(setViewMode.pending, (state) => {
+      .addCase(setViewDark.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(setViewMode.fulfilled, (state, action) => {
-        state.viewMode = action.payload
+      .addCase(setViewDark.fulfilled, (state, action) => {
+        state.viewDark = action.payload
         state.isLoading = false
         state.isSuccess = true
       })
-      .addCase(setViewMode.rejected, (state, action) => {
+      .addCase(setViewDark.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

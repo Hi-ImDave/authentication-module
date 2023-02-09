@@ -10,7 +10,7 @@ import { sendVerification } from '../../features/mail/mailSlice'
 
 const UserDetails = () => {
   const { user, isLoading, isSuccess } = useSelector((state) => state.auth)
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   const [changeDetails, setChangeDetails] = useState(false)
   const [formData, setFormData] = useState({
@@ -106,7 +106,7 @@ const UserDetails = () => {
   return (
     <div
       className={`card w-max ${
-        viewMode ? 'bg-lightModeCard' : 'bg-darkModeCard'
+        viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
       } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
     >
       <div className='card-body '>

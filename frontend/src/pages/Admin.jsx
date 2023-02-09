@@ -5,12 +5,12 @@ import InviteForm from '../components/layout/InviteForm'
 import PendingList from '../components/user/PendingList'
 
 const Admin = () => {
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   return (
     <div
       className={`${
-        viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+        viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
       } bg-opacity-80`}
     >
       <div className='flex justify-around'>

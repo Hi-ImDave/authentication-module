@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux'
 import Card from '../components/layout/Card'
 
 const Dashboard = () => {
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   return (
     <div
       className={`hero min-h-screen ${
-        viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+        viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
       } bg-opacity-80 `}
     >
       <div className='flex justify-center content-center my-7'>

@@ -13,7 +13,7 @@ const Register = () => {
   const { user, isLoading, isSuccess, isError, message } = useSelector(
     (state) => state.auth
   )
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -87,7 +87,7 @@ const Register = () => {
     <>
       <div
         className={`hero min-h-screen ${
-          viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+          viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
         } bg-opacity-80`}
       >
         <div className='hero-content flex-col'>

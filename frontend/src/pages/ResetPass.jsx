@@ -10,7 +10,7 @@ import { resetConfirm } from '../features/mail/mailSlice'
 import Button from '../components/layout/Button.jsx'
 
 const ResetPass = () => {
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   const [formData, setFormData] = useState({
     password: '',
@@ -60,7 +60,7 @@ const ResetPass = () => {
     <>
       <div
         className={`hero min-h-screen ${
-          viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+          viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
         } bg-opacity-80`}
       >
         <div className='hero-content flex-col '>

@@ -10,13 +10,13 @@ import Logout from './Logout'
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth)
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   return (
     <>
       <div
         className={`navbar ${
-          viewMode ? 'bg-lightModeCard' : 'bg-darkModeCard'
+          viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
         } text-white`}
       >
         <div className='navbar-start'>{user && <Dropdown />}</div>
@@ -28,7 +28,7 @@ const Navbar = () => {
             Authentication Module
           </Link>
         </div>
-        <div className='navbar-end space-x-6'>
+        <div className='navbar-end space-x-8'>
           <DarkMode />
           <div>
             {user ? (

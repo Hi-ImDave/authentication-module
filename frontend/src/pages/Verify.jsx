@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { reset, verify } from '../features/auth/authSlice'
 
 const Verify = () => {
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   const { verificationId } = useParams()
   const userData = { verificationId }
@@ -25,7 +25,7 @@ const Verify = () => {
   return (
     <div
       className={`min-h-screen ${
-        viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+        viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
       } bg-opacity-80 text-center`}
     >
       <form className='card-body'>

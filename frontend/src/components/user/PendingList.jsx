@@ -8,7 +8,7 @@ import { Spinner } from '../layout/Spinner'
 
 const PendingList = () => {
   const { pending, isLoading, isSuccess } = useSelector((state) => state.auth)
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   const dispatch = useDispatch()
 
@@ -44,7 +44,7 @@ const PendingList = () => {
     <div className='p-10 w-3/4'>
       <h2
         className={`text-center text-4xl mb-4 ${
-          viewMode && 'text-black'
+          !viewDark && 'text-black'
         } font-semibold underline`}
       >
         {pending.length ? 'Pending Invites' : 'No Pending Invites'}
@@ -55,7 +55,7 @@ const PendingList = () => {
           <div
             key={invite._id}
             className={`card  ${
-              viewMode ? 'bg-lightModeCard' : 'bg-darkModeCard'
+              viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
             } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
           >
             <div className='card-body flex flex-col justify-between'>

@@ -1,30 +1,32 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { FaRegMoon, FaRegSun } from 'react-icons/fa'
+import { FaRegMoon } from 'react-icons/fa'
+import { FiMoon, FiSun } from 'react-icons/fi'
 
-import { setViewMode } from '../../features/preferences/preferenceSlice'
+import { setViewDark } from '../../features/preferences/preferenceSlice'
 
 const DarkMode = () => {
   const { user } = useSelector((state) => state.auth)
-  const [darkMode, setDarkMode] = useState(user.settings.darkMode)
+  const { viewDark } = useSelector((state) => state.preference)
+  const [darkMode, setDarkMode] = useState(viewDark)
 
   const dispatch = useDispatch()
-
   const onClick = () => {
     setDarkMode((prevState) => !prevState)
-    dispatch(setViewMode(darkMode))
+
+    dispatch(setViewDark(!darkMode))
   }
 
   return (
     <div onClick={onClick}>
       {darkMode ? (
-        <div>
-          <FaRegMoon />
+        <div className='transition translate-y-4 -translate-x-6 ease-in duration-700 origin-bottom text-2xl'>
+          <FiMoon />
         </div>
       ) : (
-        <div>
-          <FaRegSun />
+        <div className='transition rotate-90 -translate-y-4 ease-in duration-700 origin-bottom text-2xl'>
+          <FiSun />
         </div>
       )}
     </div>

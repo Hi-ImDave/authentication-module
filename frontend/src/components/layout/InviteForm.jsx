@@ -7,7 +7,7 @@ import { inviteUser, getPending } from '../../features/auth/authSlice'
 import { sendInvite } from '../../features/mail/mailSlice'
 
 const InviteForm = () => {
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   const [formData, setFormData] = useState({
     email: '',
@@ -45,7 +45,7 @@ const InviteForm = () => {
   return (
     <div
       className={`card ${
-        viewMode ? 'bg-lightModeCard' : 'bg-darkModeCard'
+        viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
       } shadow-xl form-control h-min w-3/4 mt-24 ml-8`}
     >
       <div className='card-body '>

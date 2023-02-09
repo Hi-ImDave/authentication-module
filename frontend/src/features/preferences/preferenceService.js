@@ -3,12 +3,12 @@
 // const API_URL = '/api/preference'
 
 // Switch view mode
-const setViewMode = async (data) => {
+const setViewDark = async (data) => {
   return data
 }
 
 const preferenceService = {
-  setViewMode,
+  setViewDark,
 }
 
 export default preferenceService

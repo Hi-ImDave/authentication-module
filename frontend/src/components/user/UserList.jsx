@@ -22,7 +22,7 @@ const UserList = () => {
   const { user, users, isLoading, isSuccess } = useSelector(
     (state) => state.auth
   )
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   const { email } = user
   const currentUser = user._id
@@ -47,22 +47,22 @@ const UserList = () => {
   }
 
   return (
-    <div className='p-10 w-3/5'>
+    <div className='p-10 w-3/5  '>
       <h2
-        className={`text-center text-4xl mb-4 ${
-          viewMode && 'text-black'
+        className={` text-center text-4xl mb-4 ${
+          !viewDark && 'text-black'
         } font-semibold underline`}
       >
         Active Users
       </h2>
 
-      <div className='grid grid-cols-3 gap-2  '>
+      <div className=' grid grid-cols-3 gap-2  '>
         {
           users.map((user) => (
             <div
               key={user._id}
               className={`card w-96 ${
-                viewMode ? 'bg-lightModeCard' : 'bg-darkModeCard'
+                viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
               } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
             >
               <div className='card-body'>

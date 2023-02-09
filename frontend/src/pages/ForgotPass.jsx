@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import Button from '../components/layout/Button.jsx'
 
 const ForgotPass = () => {
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   const [formData, setFormData] = useState({
     email: '',
@@ -38,7 +38,7 @@ const ForgotPass = () => {
     <>
       <div
         className={`hero min-h-screen ${
-          viewMode ? 'bg-lightModeBG' : 'bg-darkModeBG'
+          viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
         } bg-opacity-80`}
       >
         <div className='hero-content flex-col '>

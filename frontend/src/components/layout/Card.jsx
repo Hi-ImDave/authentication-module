@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 import Button from './Button'
 
 const Card = ({ title, description, navigate, className }) => {
-  const { viewMode } = useSelector((state) => state.preference)
+  const { viewDark } = useSelector((state) => state.preference)
 
   return (
     <div
       className={`card  ${
-        viewMode ? 'bg-lightModeCard' : 'bg-darkModeCard'
+        viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
       } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105 ${className}`}
     >
       <div className='card-body items-center text-center'>
