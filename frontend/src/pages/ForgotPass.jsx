@@ -37,7 +37,7 @@ const ForgotPass = () => {
   return (
     <>
       <div
-        className={`hero min-h-screen ${
+        className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${
           viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
         } bg-opacity-80`}
       >

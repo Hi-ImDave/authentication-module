@@ -9,7 +9,7 @@ const Admin = () => {
 
   return (
     <div
-      className={`${
+      className={`transition-colors duration-1000 ease-in-out ${
         viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
       } bg-opacity-80`}
     >

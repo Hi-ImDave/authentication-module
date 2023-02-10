@@ -8,7 +8,7 @@ const Profile = () => {
   return (
     <>
       <div
-        className={`min-h-screen ${
+        className={`min-h-screen transition-colors duration-1000 ease-in-out ${
           viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
         } bg-opacity-80 p-8 space-y-5`}
       >

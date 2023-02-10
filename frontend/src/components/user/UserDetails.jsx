@@ -105,7 +105,7 @@ const UserDetails = () => {
 
   return (
     <div
-      className={`card w-max ${
+      className={`card w-max transition-colors duration-1000 ease-in-out ${
         viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
       } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
     >

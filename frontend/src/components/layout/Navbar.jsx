@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`navbar ${
+        className={`navbar transition-colors duration-1000 ease-in-out ${
           viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
         } text-white`}
       >

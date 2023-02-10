@@ -34,7 +34,7 @@ const UserList = () => {
       if (isSuccess) {
         dispatch(reset())
       }
-      dispatch(reset())
+      // dispatch(reset())
     }
   }, [dispatch, isSuccess])
 
@@ -49,19 +49,19 @@ const UserList = () => {
   return (
     <div className='p-10 w-3/5  '>
       <h2
-        className={` text-center text-4xl mb-4 ${
+        className={`text-center text-4xl mb-4 transition-colors duration-1000 ease-in-out ${
           !viewDark && 'text-black'
         } font-semibold underline`}
       >
         Active Users
       </h2>
 
-      <div className=' grid grid-cols-3 gap-2  '>
+      <div className='grid grid-cols-3 gap-2'>
         {
           users.map((user) => (
             <div
               key={user._id}
-              className={`card w-96 ${
+              className={`card w-96 transition-colors duration-1000 ease-in-out ${
                 viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
               } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
             >
@@ -93,7 +93,11 @@ const UserList = () => {
                         )
                       }}
                     >
-                      <FaMicrophoneSlash className='hover:text-error' />
+                      <FaMicrophoneSlash
+                        className={
+                          user.isMuted ? 'text-error' : 'hover:text-error'
+                        }
+                      />
                     </div>
                   )}
                   {user._id !== currentUser && (
@@ -137,9 +141,9 @@ const UserList = () => {
                   {user.isActive && (
                     <Badge badgeColor='badge-success' title='verified email' />
                   )}
-                  {user.isMuted && (
+                  {/* {user.isMuted && (
                     <Badge badgeColor='badge-error' title='muted' />
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

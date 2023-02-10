@@ -43,7 +43,7 @@ const PendingList = () => {
   return (
     <div className='p-10 w-3/4'>
       <h2
-        className={`text-center text-4xl mb-4 ${
+        className={`text-center text-4xl mb-4 transition-colors duration-1000 ease-in-out ${
           !viewDark && 'text-black'
         } font-semibold underline`}
       >
@@ -54,7 +54,7 @@ const PendingList = () => {
         {pending.map((invite) => (
           <div
             key={invite._id}
-            className={`card  ${
+            className={`card transition-colors duration-1000 ease-in-out ${
               viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
             } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
           >

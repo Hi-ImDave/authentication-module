@@ -44,7 +44,7 @@ const InviteForm = () => {
 
   return (
     <div
-      className={`card ${
+      className={`card transition-colors duration-1000 ease-in-out ${
         viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
       } shadow-xl form-control h-min w-3/4 mt-24 ml-8`}
     >
