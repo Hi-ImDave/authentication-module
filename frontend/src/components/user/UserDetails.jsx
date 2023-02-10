@@ -2,14 +2,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import Avatar from '../layout/Avatar'
 import { toast } from 'react-toastify'
-import { Spinner } from '../layout/Spinner'
 import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa'
 
 import { update, reset } from '../../features/auth/authSlice'
 import { sendVerification } from '../../features/mail/mailSlice'
 
 const UserDetails = () => {
-  const { user, isLoading, isSuccess } = useSelector((state) => state.auth)
+  const { user, isSuccess } = useSelector((state) => state.auth)
   const { viewDark } = useSelector((state) => state.preference)
 
   const [changeDetails, setChangeDetails] = useState(false)
@@ -97,10 +96,6 @@ const UserDetails = () => {
       isActive: user.isActive,
     })
     setChangeDetails((prevState) => !prevState)
-  }
-
-  if (isLoading) {
-    return <Spinner />
   }
 
   return (

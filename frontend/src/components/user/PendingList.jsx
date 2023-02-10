@@ -4,10 +4,9 @@ import { FaRegClock, FaRegTrashAlt } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
 import { getPending, deleteInvite, reset } from '../../features/auth/authSlice'
-import { Spinner } from '../layout/Spinner'
 
 const PendingList = () => {
-  const { pending, isLoading, isSuccess } = useSelector((state) => state.auth)
+  const { pending, isSuccess } = useSelector((state) => state.auth)
   const { viewDark } = useSelector((state) => state.preference)
 
   const dispatch = useDispatch()
@@ -24,10 +23,6 @@ const PendingList = () => {
   useEffect(() => {
     dispatch(getPending())
   }, [dispatch])
-
-  if (isLoading) {
-    return <Spinner />
-  }
 
   const getTimeElapsed = (date) => {
     const myDate = new Date(date)

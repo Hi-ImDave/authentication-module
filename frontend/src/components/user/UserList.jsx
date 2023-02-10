@@ -16,12 +16,9 @@ import {
   muteUser,
   reset,
 } from '../../features/auth/authSlice'
-import { Spinner } from '../layout/Spinner'
 
 const UserList = () => {
-  const { user, users, isLoading, isSuccess } = useSelector(
-    (state) => state.auth
-  )
+  const { user, users, isSuccess } = useSelector((state) => state.auth)
   const { viewDark } = useSelector((state) => state.preference)
 
   const { email } = user
@@ -42,10 +39,6 @@ const UserList = () => {
     dispatch(getUsers())
   }, [dispatch])
 
-  if (isLoading) {
-    return <Spinner />
-  }
-
   return (
     <div className='p-10 w-3/5  '>
       <h2
@@ -63,7 +56,7 @@ const UserList = () => {
               key={user._id}
               className={`card w-96 transition-colors duration-1000 ease-in-out ${
                 viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
-              } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
+              } shadow-xl transition ease-in-out delay-150  duration-300 hover:scale-105`}
             >
               <div className='card-body'>
                 {user.email === email && (
@@ -88,8 +81,8 @@ const UserList = () => {
                         dispatch(getUsers())
                         toast.success(
                           user.isMuted
-                            ? 'User has been unmuted'
-                            : 'User has been muted'
+                            ? `${user.firstName} ${user.lastName} has been unmuted`
+                            : `${user.firstName} ${user.lastName} has been muted`
                         )
                       }}
                     >
