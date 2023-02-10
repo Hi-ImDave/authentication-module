@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import VerifyEmailBar from './VerifyEmailBar'
 
 import Dropdown from './Dropdown'
-import DarkMode from './DarkMode'
+import ColorTheme from './ColorTheme'
 import Logout from './Logout'
 
 const Navbar = () => {
@@ -29,7 +29,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className='navbar-end space-x-8'>
-          <DarkMode />
+          <ColorTheme />
           <div>
             {user ? (
               <Logout />

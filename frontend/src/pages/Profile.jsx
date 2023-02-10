@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import UserDetails from '../components/user/UserDetails'
 import PasswordCard from '../components/user/PasswordCard'
+import SettingsForm from '../components/layout/SettingsForm'
 
 const Profile = () => {
   const { viewDark } = useSelector((state) => state.preference)
@@ -14,6 +15,7 @@ const Profile = () => {
       >
         <UserDetails />
         <PasswordCard />
+        <SettingsForm />
       </div>
     </>
   )
