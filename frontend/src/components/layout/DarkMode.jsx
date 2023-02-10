@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { FaRegMoon } from 'react-icons/fa'
 import { FiMoon, FiSun } from 'react-icons/fi'
 
 import { setViewDark } from '../../features/preferences/preferenceSlice'
 
 const DarkMode = () => {
-  const { user } = useSelector((state) => state.auth)
   const { viewDark } = useSelector((state) => state.preference)
   const [darkMode, setDarkMode] = useState(viewDark)
 

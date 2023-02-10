@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 
 import Card from '../components/layout/Card'
+import Carousel from '../components/layout/Carousel'
 
 const Dashboard = () => {
   const { viewDark } = useSelector((state) => state.preference)
@@ -18,6 +19,7 @@ const Dashboard = () => {
             description='Community news and updates can go here'
             navigate='/news'
             className='lg:col-span-3 col-span-2 lg:row-span-4 row-span-3 stretch '
+            children={<Carousel />}
           />
           <Card
             title='Chat Module'

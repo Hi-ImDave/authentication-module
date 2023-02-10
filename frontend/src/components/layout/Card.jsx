@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import Button from './Button'
 
-const Card = ({ title, description, navigate, className }) => {
+const Card = ({ title, description, navigate, className, children }) => {
   const { viewDark } = useSelector((state) => state.preference)
 
   return (
@@ -16,6 +16,7 @@ const Card = ({ title, description, navigate, className }) => {
       <div className='card-body items-center text-center'>
         <h2 className='card-title'>{title}</h2>
         <p>{description}</p>
+        {children}
         <div className='card-actions'>
           <Link to={navigate}>
             <Button title='View' color='glass' />
