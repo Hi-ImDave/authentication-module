@@ -1,12 +1,7 @@
-import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
-const FontSize = () => {
-  const [range, setRange] = useState(25)
+const FontSize = ({ range, onSlideProp }) => {
   const max = 100
-
-  const onChange = (event) => {
-    setRange(event.target.value)
-  }
 
   return (
     <>
@@ -15,9 +10,9 @@ const FontSize = () => {
         min='0'
         max={max}
         value={range}
-        className='range'
+        className='range '
         step='25'
-        onChange={onChange}
+        onChange={onSlideProp}
       />
 
       <div className='w-full space-x-20 text-center  '>

@@ -1,10 +1,8 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
-const DarkMode = () => {
-  const [toggle, setToggle] = useState(true)
-  const onChange = () => {
-    setToggle((prevState) => !prevState)
-  }
+const DarkMode = ({ toggle, onToggleProp }) => {
+  const { user } = useSelector((state) => state.auth)
 
   return (
     <label className='label cursor-pointer p-5'>
@@ -13,7 +11,7 @@ const DarkMode = () => {
         type='checkbox'
         className='toggle'
         checked={toggle}
-        onChange={onChange}
+        onChange={onToggleProp}
       />
     </label>
   )
