@@ -1,18 +1,16 @@
 // MODULES
-import { useSelector } from 'react-redux'
 
 // PAGES
 
 // COMPONENTS
+import ThemeSetting from '../components/ThemeSetting'
 
 const Welcome = () => {
-  const { viewDark } = useSelector((state) => state.preference)
+  let theme = ThemeSetting()
 
   return (
     <div
-      className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${
-        viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
-      } bg-opacity-80`}
+      className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80`}
     >
       <div className='hero-content text-center text-neutral-content'>
         <div className='max-w-md'>

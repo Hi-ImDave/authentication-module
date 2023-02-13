@@ -1,14 +1,15 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { resetRequest } from '../features/mail/mailSlice.js'
 import { toast } from 'react-toastify'
 
 import Button from '../components/layout/Button.jsx'
+import ThemeSetting from '../components/ThemeSetting'
 
 const ForgotPass = () => {
-  const { viewDark } = useSelector((state) => state.preference)
+  let theme = ThemeSetting()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -37,9 +38,7 @@ const ForgotPass = () => {
   return (
     <>
       <div
-        className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${
-          viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
-        } bg-opacity-80`}
+        className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80`}
       >
         <div className='hero-content flex-col '>
           <div className='text-center '>

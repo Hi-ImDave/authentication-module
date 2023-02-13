@@ -8,12 +8,13 @@ import { register, reset } from '../features/auth/authSlice'
 import { sendVerification } from '../features/mail/mailSlice'
 import { Spinner } from '../components/layout/Spinner'
 import Button from '../components/layout/Button.jsx'
+import ThemeSetting from '../components/ThemeSetting'
 
 const Register = () => {
   const { user, isLoading, isSuccess, isError, message } = useSelector(
     (state) => state.auth
   )
-  const { viewDark } = useSelector((state) => state.preference)
+  let theme = ThemeSetting()
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -86,9 +87,7 @@ const Register = () => {
   return (
     <>
       <div
-        className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${
-          viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
-        } bg-opacity-80`}
+        className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80`}
       >
         <div className='hero-content flex-col'>
           <div className='text-center flex '>

@@ -7,12 +7,13 @@ import { useNavigate, Link } from 'react-router-dom'
 import { login, reset } from '../features/auth/authSlice'
 import { Spinner } from '../components/layout/Spinner'
 import Button from '../components/layout/Button.jsx'
+import ThemeSetting from '../components/ThemeSetting'
 
 const Login = () => {
   const { user, isLoading, isSuccess, isError, message } = useSelector(
     (state) => state.auth
   )
-  const { viewDark } = useSelector((state) => state.preference)
+  let theme = ThemeSetting()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -62,9 +63,7 @@ const Login = () => {
   return (
     <>
       <div
-        className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${
-          viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
-        } bg-opacity-80`}
+        className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80`}
       >
         <div className='hero-content flex-col '>
           <div className='text-center flex'>

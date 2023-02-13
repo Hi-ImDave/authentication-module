@@ -8,16 +8,18 @@ import Dropdown from './Dropdown'
 import ColorTheme from './ColorTheme'
 import Logout from './Logout'
 
+import ThemeSetting from '../ThemeSetting'
+
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth)
-  const { viewDark } = useSelector((state) => state.preference)
+  const theme = ThemeSetting()
+
+  console.log(theme.cardBG)
 
   return (
     <>
       <div
-        className={`navbar transition-colors duration-1000 ease-in-out ${
-          viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
-        } text-white`}
+        className={`navbar transition-colors duration-1000 ease-in-out ${theme.cardBG} text-white`}
       >
         <div className='navbar-start'>{user && <Dropdown />}</div>
         <div className='navbar-center'>

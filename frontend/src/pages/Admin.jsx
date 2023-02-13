@@ -1,17 +1,15 @@
-import { useSelector } from 'react-redux'
-
 import UserList from '../components/user/UserList'
 import InviteForm from '../components/layout/InviteForm'
 import PendingList from '../components/user/PendingList'
 
+import ThemeSetting from '../components/ThemeSetting'
+
 const Admin = () => {
-  const { viewDark } = useSelector((state) => state.preference)
+  const theme = ThemeSetting()
 
   return (
     <div
-      className={`transition-colors duration-1000 ease-in-out ${
-        viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
-      } bg-opacity-80`}
+      className={`transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80`}
     >
       <div className='flex justify-around'>
         <div className='w-2/5'>

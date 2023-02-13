@@ -4,10 +4,12 @@ import { FaRegClock, FaRegTrashAlt } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
 import { getPending, deleteInvite, reset } from '../../features/auth/authSlice'
+import ThemeSetting from '../ThemeSetting'
 
 const PendingList = () => {
   const { pending, isSuccess } = useSelector((state) => state.auth)
   const { viewDark } = useSelector((state) => state.preference)
+  const theme = ThemeSetting()
 
   const dispatch = useDispatch()
 
@@ -49,9 +51,7 @@ const PendingList = () => {
         {pending.map((invite) => (
           <div
             key={invite._id}
-            className={`card transition-colors duration-1000 ease-in-out ${
-              viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
-            } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
+            className={`card transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
           >
             <div className='card-body flex flex-col justify-between'>
               <span>{invite.email}</span>

@@ -6,6 +6,8 @@ const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
   viewDark: user.settings.darkMode,
+  fontSize: user.settings.fontSize,
+  pureBlack: user.settings.pureBlack,
   isError: false,
   isSuccess: false,
   isLoading: false,

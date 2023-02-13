@@ -4,10 +4,12 @@ import { FaEye, FaEyeSlash, FaTimes, FaEdit, FaCheck } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
 import { changePassword, reset } from '../../features/auth/authSlice'
+import ThemeSetting from '../ThemeSetting'
 
 const PasswordCard = () => {
   const { user, isSuccess } = useSelector((state) => state.auth)
   const { viewDark } = useSelector((state) => state.preference)
+  const theme = ThemeSetting()
 
   const [changeDetails, setChangeDetails] = useState(false)
   const [hidePass, setHidePass] = useState(true)
@@ -62,9 +64,7 @@ const PasswordCard = () => {
 
   return (
     <div
-      className={`card w-max transition-colors duration-1000 ease-in-out ${
-        viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
-      } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
+      className={`card w-max transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
     >
       <div className='card-body '>
         <div className=' flex flex-row justify-start'>

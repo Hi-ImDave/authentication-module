@@ -44,11 +44,16 @@ const userSchema = mongoose.Schema(
         required: true,
         default: false,
       },
-      fontSize: {
-        type: Number,
+      pureBlack: {
+        type: Boolean,
         required: true,
-        default: 0,
-        enum: [0, 25, 50, 75, 100],
+        default: false,
+      },
+      fontSize: {
+        type: String,
+        required: true,
+        default: '0',
+        enum: ['0', '25', '50', '75', '100'],
       },
     },
   },

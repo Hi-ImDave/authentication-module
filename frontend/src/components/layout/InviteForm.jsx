@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { FaPlus } from 'react-icons/fa'
 
 import { inviteUser, getPending } from '../../features/auth/authSlice'
 import { sendInvite } from '../../features/mail/mailSlice'
+import ThemeSetting from '../ThemeSetting'
 
 const InviteForm = () => {
-  const { viewDark } = useSelector((state) => state.preference)
+  const theme = ThemeSetting()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -44,9 +45,7 @@ const InviteForm = () => {
 
   return (
     <div
-      className={`card transition-colors duration-1000 ease-in-out ${
-        viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
-      } shadow-xl form-control h-min w-3/4 mt-24 ml-8`}
+      className={`card transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl form-control h-min w-3/4 mt-24 ml-8`}
     >
       <div className='card-body '>
         <form onSubmit={onSubmit}>

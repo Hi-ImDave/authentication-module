@@ -1,12 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { reset, verify } from '../features/auth/authSlice'
+import ThemeSetting from '../components/ThemeSetting'
 
 const Verify = () => {
-  const { viewDark } = useSelector((state) => state.preference)
+  let theme = ThemeSetting()
 
   const { verificationId } = useParams()
   const userData = { verificationId }
@@ -24,9 +25,7 @@ const Verify = () => {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-1000 ease-in-out ${
-        viewDark ? 'bg-darkModeBG' : 'bg-lightModeBG'
-      } bg-opacity-80 text-center`}
+      className={`min-h-screen transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80 text-center`}
     >
       <form className='card-body'>
         <p>Thank you for verifying your account</p>

@@ -17,9 +17,12 @@ import {
   reset,
 } from '../../features/auth/authSlice'
 
+import ThemeSetting from '../ThemeSetting'
+
 const UserList = () => {
   const { user, users, isSuccess } = useSelector((state) => state.auth)
   const { viewDark } = useSelector((state) => state.preference)
+  const theme = ThemeSetting()
 
   const { email } = user
   const currentUser = user._id
@@ -53,9 +56,7 @@ const UserList = () => {
         {users.map((user) => (
           <div
             key={user._id}
-            className={`card w-96 transition-colors duration-1000 ease-in-out ${
-              viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
-            } shadow-xl transition ease-in-out delay-150  duration-300 hover:scale-105`}
+            className={`card w-96 transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl transition ease-in-out delay-150  duration-300 hover:scale-105`}
           >
             <div className='card-body'>
               {user.email === email && (
@@ -65,7 +66,7 @@ const UserList = () => {
                   title='me'
                 />
               )}
-              <h2 className='card-title'>
+              <h2 className={`card-title ${theme.fontModifier}`}>
                 {' '}
                 {`${user.firstName} ${user.lastName}`}
               </h2>

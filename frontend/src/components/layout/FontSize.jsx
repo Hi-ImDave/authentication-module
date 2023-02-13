@@ -1,8 +1,4 @@
-import { useSelector } from 'react-redux'
-
-const FontSize = ({ range, onSlideProp }) => {
-  const max = 100
-
+const FontSize = ({ max, range, onSlideProp }) => {
   return (
     <>
       <input

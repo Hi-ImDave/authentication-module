@@ -15,6 +15,10 @@ HTML, CSS/TailwindCSS/daisyUI, JavaScript - JSX, React, Redux Toolkit, Express, 
 
 ## Optimizations:
 
-implement third party login && 2fa
+implement 2fa
+switch case for font settings
+pure black dark mode setting
+chat module w/ web sockets
+community hub
 
 ## Lessons Learned:

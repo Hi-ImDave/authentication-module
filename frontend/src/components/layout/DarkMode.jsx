@@ -1,9 +1,4 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-
-const DarkMode = ({ toggle, onToggleProp }) => {
-  const { user } = useSelector((state) => state.auth)
-
+const DarkMode = ({ toggle, onToggleProp, checkbox, onCheckbox }) => {
   return (
     <label className='label cursor-pointer p-5'>
       <span className='label-text'>Enable Dark Mode</span>
@@ -13,6 +8,15 @@ const DarkMode = ({ toggle, onToggleProp }) => {
         checked={toggle}
         onChange={onToggleProp}
       />
+      <div className='tooltip' data-tip='pure black dark mode'>
+        <input
+          type='checkbox'
+          checked={!toggle ? false : checkbox}
+          className='checkbox '
+          onChange={onCheckbox}
+          disabled={!toggle}
+        />
+      </div>
     </label>
   )
 }

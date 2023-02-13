@@ -6,10 +6,12 @@ import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa'
 
 import { update, reset } from '../../features/auth/authSlice'
 import { sendVerification } from '../../features/mail/mailSlice'
+import ThemeSetting from '../ThemeSetting'
 
 const UserDetails = () => {
   const { user, isSuccess } = useSelector((state) => state.auth)
   const { viewDark } = useSelector((state) => state.preference)
+  const theme = ThemeSetting()
 
   const [changeDetails, setChangeDetails] = useState(false)
   const [formData, setFormData] = useState({
@@ -100,9 +102,7 @@ const UserDetails = () => {
 
   return (
     <div
-      className={`card w-max transition-colors duration-1000 ease-in-out ${
-        viewDark ? 'bg-darkModeCard' : 'bg-lightModeCard'
-      } shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
+      className={`card w-max transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105`}
     >
       <div className='card-body '>
         <div className=' flex flex-row justify-start'>
