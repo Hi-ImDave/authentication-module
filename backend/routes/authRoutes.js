@@ -6,6 +6,7 @@ const {
   registerUser,
   loginUser,
   updateUser,
+  updateSettings,
   uploadImage,
   verify,
   resetPassword,
@@ -26,6 +27,8 @@ router.post('/', registerUser)
 router.post('/login', loginUser)
 
 router.put('/updateUser', updateUser)
+
+router.put('/updateSettings', updateSettings)
 
 router.post('/me', uploadImage)
 

@@ -1,6 +1,10 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa'
+import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+
+import { updateSettings } from '../../features/auth/authSlice'
+import { reset, setViewDark } from '../../features/preferences/preferenceSlice'
 
 import DarkMode from './DarkMode'
 import FontSize from './FontSize'
@@ -9,6 +13,7 @@ import ThemeSetting from '../ThemeSetting'
 const SettingsForm = () => {
   const { user } = useSelector((state) => state.auth)
   const theme = ThemeSetting()
+  const dispatch = useDispatch()
 
   const [toggle, setToggle] = useState(user.settings.darkMode)
 
@@ -16,11 +21,9 @@ const SettingsForm = () => {
 
   const [range, setRange] = useState(user.settings.fontSize)
 
-  const [changeDetails, setChangeDetails] = useState(false)
-
-  const onToggle = () => {
-    setToggle((prevState) => !prevState)
-    !toggle && setCheckbox(false)
+  const onToggle = async () => {
+    await setToggle((prevState) => !prevState)
+    toggle && setCheckbox(false)
   }
 
   const onCheckbox = () => {
@@ -31,26 +34,21 @@ const SettingsForm = () => {
     setRange(event.target.value)
   }
 
-  const onEditClick = (event) => {
-    changeDetails && onSubmit(event)
-    setChangeDetails((prevState) => !prevState)
-  }
-
-  const onCancel = () => {
-    //
-    setChangeDetails((prevState) => !prevState)
-  }
-
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault()
-    if (
-      toggle !== user.settings.darkMode ||
-      range !== user.settings.fontSize ||
-      checkbox !== user.settings.pureBlack
-    ) {
-      return console.log('changes made')
+
+    const settings = {
+      _id: user._id,
+      darkMode: toggle,
+      pureBlack: checkbox,
+      fontSize: range,
     }
-    console.log('everything is the same')
+
+    // not changing state until fired twice ???
+    const updated = await dispatch(updateSettings(settings))
+    await dispatch(setViewDark(settings))
+
+    toast.success('settings updated')
   }
 
   return (

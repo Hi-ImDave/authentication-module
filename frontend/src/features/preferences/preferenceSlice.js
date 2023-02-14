@@ -37,6 +37,9 @@ export const preferenceSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.viewDark = user.settings.darkMode
+      state.fontSize = user.settings.fontSize
+      state.pureBlack = user.settings.pureBlack
       state.isLoading = false
       state.isError = false
       state.isSuccess = false
@@ -49,7 +52,9 @@ export const preferenceSlice = createSlice({
         state.isLoading = true
       })
       .addCase(setViewDark.fulfilled, (state, action) => {
-        state.viewDark = action.payload
+        state.viewDark = action.payload.darkMode
+        state.fontSize = action.payload.fontSize
+        state.pureBlack = action.payload.pureBlack
         state.isLoading = false
         state.isSuccess = true
       })

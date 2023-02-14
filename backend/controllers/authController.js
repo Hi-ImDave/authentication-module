@@ -195,6 +195,32 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Update user settings
+// @route   /api/auth/updateSettings
+// @access  Private
+const updateSettings = asyncHandler(async (req, res) => {
+  const { _id, darkMode, pureBlack, fontSize } = req.body
+
+  const settings = { settings: { darkMode, pureBlack, fontSize } }
+
+  console.log(settings)
+
+  // const user = await User.findById(_id)
+  // console.log('user', user)
+
+  // Update user
+  const updatedUser = await User.findByIdAndUpdate(_id, settings, { new: true })
+
+  console.log('updatedUser', updatedUser)
+
+  if (updatedUser) {
+    res.status(201).json(updatedUser)
+  } else {
+    res.status(400)
+    throw new Error('Invalid user data')
+  }
+})
+
 // Generate token
 const generateToken = (id, exp) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -400,6 +426,7 @@ module.exports = {
   registerUser,
   loginUser,
   updateUser,
+  updateSettings,
   verify,
   uploadImage,
   resetPassword,

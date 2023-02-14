@@ -10,14 +10,15 @@ const DarkMode = () => {
   const [darkMode, setDarkMode] = useState(viewDark)
 
   const dispatch = useDispatch()
-  const onClick = () => {
+  const onSubmit = (event) => {
+    event.preventDefault()
     setDarkMode((prevState) => !prevState)
 
     dispatch(setViewDark(!darkMode))
   }
 
   return (
-    <div onClick={onClick}>
+    <div onClick={onSubmit}>
       {darkMode ? (
         <div className='transition translate-y-4 -translate-x-6 ease-in duration-700 origin-bottom text-2xl'>
           <FiMoon />

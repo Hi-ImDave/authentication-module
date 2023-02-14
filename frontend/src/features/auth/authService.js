@@ -66,6 +66,17 @@ const update = async (userData) => {
   }
 }
 
+// update settings
+const updateSettings = async (settings) => {
+  const response = await axios.put(API_URL + '/updateSettings', settings)
+
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data))
+  }
+
+  return response.data
+}
+
 // Logout user
 const logout = () => {
   localStorage.removeItem('user')
@@ -145,6 +156,7 @@ const authService = {
   inviteUser,
   register,
   update,
+  updateSettings,
   logout,
   login,
   verify,
