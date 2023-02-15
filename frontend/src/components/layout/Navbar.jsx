@@ -14,8 +14,6 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.auth)
   const theme = ThemeSetting()
 
-  console.log(theme.cardBG)
-
   return (
     <>
       <div
@@ -25,12 +23,12 @@ const Navbar = () => {
         <div className='navbar-center'>
           <Link
             to='/dashboard'
-            className='btn btn-ghost normal-case text-lg md:text-3xl'
+            className='btn btn-ghost normal-case mr-4 text-lg md:text-3xl'
           >
             Authentication Module
           </Link>
         </div>
-        <div className='navbar-end space-x-8'>
+        <div className='navbar-end lg:space-x-8'>
           <ColorTheme />
           <div>
             {user ? (

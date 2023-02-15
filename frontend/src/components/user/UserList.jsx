@@ -45,7 +45,7 @@ const UserList = () => {
   }, [dispatch])
 
   return (
-    <div className='p-10 w-3/5  '>
+    <div className='p-10 lg:w-3/5  '>
       <h2
         className={`text-center text-4xl mb-4 transition-colors duration-1000 ease-in-out ${
           !viewDark && 'text-black'
@@ -54,11 +54,11 @@ const UserList = () => {
         Active Users
       </h2>
 
-      <div className='grid grid-cols-3 gap-2'>
+      <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2'>
         {users.map((user) => (
           <div
             key={user._id}
-            className={`card w-96 transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl transition ease-in-out delay-150  duration-300 hover:scale-105`}
+            className={`card w-full lg:w-96 transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl transition ease-in-out delay-150  duration-300 hover:scale-105`}
           >
             <div className='card-body'>
               {user.email === email && (

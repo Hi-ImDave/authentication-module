@@ -14,8 +14,8 @@ const Admin = () => {
     <div
       className={`transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80`}
     >
-      <div className='flex justify-around'>
-        <div className='w-2/5'>
+      <div className='flex flex-col justify-around'>
+        <div className='w-full lg: w-2/5'>
           <InviteForm />
           <PendingList />
         </div>

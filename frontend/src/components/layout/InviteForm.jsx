@@ -45,11 +45,11 @@ const InviteForm = () => {
 
   return (
     <div
-      className={`card transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl form-control h-min w-3/4 mt-24 ml-8`}
+      className={`card transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl form-control h-min w-11/12 lg:w-3/4 mt-24 ml-8`}
     >
       <div className='card-body '>
         <form onSubmit={onSubmit}>
-          <div className='form-control flex flex-row justify-between'>
+          <div className='form-control flex flex-col lg:flex-row justify-between'>
             <input
               type='text'
               placeholder='User email'
