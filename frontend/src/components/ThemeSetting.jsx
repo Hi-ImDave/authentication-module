@@ -5,6 +5,8 @@ const ThemeSetting = () => {
     (state) => state.preference
   )
 
+  console.log(fontSize)
+
   const fontModifier = () => {
     switch (fontSize) {
       case '0':

@@ -7,6 +7,9 @@ import ThemeSetting from '../components/ThemeSetting'
 const Admin = () => {
   const theme = ThemeSetting()
 
+  const path = window.location.pathname
+  console.log(path)
+
   return (
     <div
       className={`transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80`}

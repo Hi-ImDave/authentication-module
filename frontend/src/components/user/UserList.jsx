@@ -24,6 +24,8 @@ const UserList = () => {
   const { viewDark } = useSelector((state) => state.preference)
   const theme = ThemeSetting()
 
+  console.log(theme)
+
   const { email } = user
   const currentUser = user._id
 
@@ -66,7 +68,7 @@ const UserList = () => {
                   title='me'
                 />
               )}
-              <h2 className={`card-title ${theme.fontModifier}`}>
+              <h2 className={`card-title  ${theme.font}`}>
                 {' '}
                 {`${user.firstName} ${user.lastName}`}
               </h2>
