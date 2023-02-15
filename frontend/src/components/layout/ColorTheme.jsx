@@ -6,7 +6,9 @@ import { FiMoon, FiSun } from 'react-icons/fi'
 import { setViewDark } from '../../features/preferences/preferenceSlice'
 
 const DarkMode = () => {
-  const { viewDark } = useSelector((state) => state.preference)
+  const { viewDark, fontSize, pureBlack } = useSelector(
+    (state) => state.preference
+  )
   const [darkMode, setDarkMode] = useState(viewDark)
 
   const dispatch = useDispatch()
@@ -14,12 +16,18 @@ const DarkMode = () => {
     event.preventDefault()
     setDarkMode((prevState) => !prevState)
 
-    dispatch(setViewDark(!darkMode))
+    const settings = {
+      darkMode: !darkMode,
+      pureBlack: pureBlack,
+      fontSize: fontSize,
+    }
+
+    dispatch(setViewDark(settings))
   }
 
   return (
     <div onClick={onSubmit}>
-      {darkMode ? (
+      {viewDark ? (
         <div className='transition translate-y-4 -translate-x-6 ease-in duration-700 origin-bottom text-2xl'>
           <FiMoon />
         </div>

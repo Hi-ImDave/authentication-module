@@ -8,9 +8,6 @@ const initialState = {
   viewDark: user.settings.darkMode,
   fontSize: user.settings.fontSize,
   pureBlack: user.settings.pureBlack,
-  isError: false,
-  isSuccess: false,
-  isLoading: false,
   message: '',
 }
 
@@ -40,27 +37,18 @@ export const preferenceSlice = createSlice({
       state.viewDark = user.settings.darkMode
       state.fontSize = user.settings.fontSize
       state.pureBlack = user.settings.pureBlack
-      state.isLoading = false
-      state.isError = false
-      state.isSuccess = false
       state.message = ''
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(setViewDark.pending, (state) => {
-        state.isLoading = true
-      })
       .addCase(setViewDark.fulfilled, (state, action) => {
         state.viewDark = action.payload.darkMode
         state.fontSize = action.payload.fontSize
         state.pureBlack = action.payload.pureBlack
-        state.isLoading = false
-        state.isSuccess = true
+        state.message = action.payload
       })
       .addCase(setViewDark.rejected, (state, action) => {
-        state.isLoading = false
-        state.isError = true
         state.message = action.payload
       })
   },
