@@ -51,7 +51,7 @@ const SettingsForm = () => {
 
   return (
     <div
-      className={`form-control flex card w-1/6 ${theme.transition} ${theme.cardBG} shadow-xl  space-y-5`}
+      className={`p-5 form-control flex card w-1/6 ${theme.transition} ${theme.cardBG} shadow-xl  space-y-5`}
     >
       <DarkMode
         toggle={toggle}

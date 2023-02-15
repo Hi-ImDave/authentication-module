@@ -8,12 +8,11 @@ const Admin = () => {
   const theme = ThemeSetting()
 
   const path = window.location.pathname
-  console.log(path)
 
   return (
     <div className={`${theme.transition} ${theme.pageBG} bg-opacity-80`}>
-      <div className='flex flex-col justify-around'>
-        <div className='w-full lg: w-2/5'>
+      <div className='flex flex-col lg:flex-row justify-around'>
+        <div className='w-full lg:w-2/5'>
           <InviteForm />
           <PendingList />
         </div>

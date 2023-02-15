@@ -37,6 +37,7 @@ const Register = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message)
+      dispatch(reset())
     }
 
     // Redirect when logged in
@@ -44,7 +45,7 @@ const Register = () => {
       navigate('/dashboard')
     }
 
-    dispatch(reset)
+    dispatch(reset())
   }, [isError, isSuccess, user, message, navigate, dispatch])
 
   const onChange = (event) => {
@@ -69,6 +70,7 @@ const Register = () => {
       }
 
       const response = await dispatch(register(userData))
+
       dispatch(
         sendVerification({
           _id: response.payload._id,

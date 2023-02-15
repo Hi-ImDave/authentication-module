@@ -40,30 +40,10 @@ const update = async (userData) => {
   const response = await axios.put(API_URL + '/updateUser', userData)
 
   if (response.data) {
-    localStorage.setItem(
-      'user',
-      JSON.stringify({
-        _id: userData._id,
-        firstName: response.data.firstName,
-        lastName: response.data.lastName,
-        email: response.data.email,
-        token: userData.token,
-        isActive: response.data.isActive,
-        isAdmin: response.data.isAdmin,
-        isMuted: response.data.isMuted,
-      })
-    )
+    localStorage.setItem('user', JSON.stringify(response.data))
   }
 
-  return {
-    _id: userData._id,
-    firstName: response.data.firstName,
-    lastName: response.data.lastName,
-    email: response.data.email,
-    token: userData.token,
-    isAdmin: userData.isAdmin,
-    isActive: response.data.isActive,
-  }
+  return response.data
 }
 
 // update settings
@@ -86,8 +66,10 @@ const logout = () => {
 const verify = async (userId) => {
   const response = await axios.put(API_URL + '/verify', userId)
   if (response.data) {
-    localStorage.removeItem('user')
+    localStorage.setItem('user', JSON.stringify(response.data))
   }
+
+  return response.data
 }
 
 // Reset password

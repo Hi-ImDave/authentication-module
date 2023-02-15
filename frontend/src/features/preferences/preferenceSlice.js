@@ -5,9 +5,9 @@ import preferenceService from './preferenceService'
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
-  viewDark: user.settings.darkMode,
-  fontSize: user.settings.fontSize,
-  pureBlack: user.settings.pureBlack,
+  viewDark: user ? user.settings.darkMode : false,
+  fontSize: user ? user.settings.fontSize : '20',
+  pureBlack: user ? user.settings.pureBlack : false,
   message: '',
 }
 

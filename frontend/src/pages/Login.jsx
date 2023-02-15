@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 
 import { login, reset } from '../features/auth/authSlice'
+import { setViewDark } from '../features/preferences/preferenceSlice'
 import { Spinner } from '../components/layout/Spinner'
 import Button from '../components/layout/Button.jsx'
 import ThemeSetting from '../components/ThemeSetting'
@@ -28,14 +29,16 @@ const Login = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message)
+      dispatch(reset())
     }
 
     // Redirect when logged in
     if (isSuccess || user) {
       navigate('/dashboard')
+      dispatch(setViewDark(user.settings))
     }
 
-    dispatch(reset)
+    dispatch(reset())
   }, [isError, isSuccess, user, message, navigate, dispatch])
 
   const onChange = (event) => {
@@ -70,7 +73,9 @@ const Login = () => {
             <FaSignInAlt className='mr-3 text-2xl md:text-5xl font-bold' />
             <h1 className='text-2xl md:text-5xl font-bold'>Login now!</h1>
           </div>
-          <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
+          <div
+            className={`card flex-shrink-0 w-full max-w-sm shadow-2xl ${theme.cardBG}`}
+          >
             <form className='card-body' onSubmit={onSubmit}>
               <div className='form-control'>
                 <label className='label'>

@@ -20,7 +20,7 @@ const Navbar = () => {
         <div className='navbar-start'>{user && <Dropdown />}</div>
         <div className='navbar-center'>
           <Link
-            to='/dashboard'
+            to={user ? '/dashboard' : '/'}
             className='btn btn-ghost normal-case mr-4 text-lg md:text-3xl'
           >
             Authentication Module

@@ -19,8 +19,8 @@ const Verify = () => {
 
     setTimeout(() => {
       dispatch(reset())
-      navigate('/login')
-    }, 3000)
+      navigate('/dashboard')
+    }, 2000)
   })
 
   return (

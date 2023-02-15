@@ -175,8 +175,11 @@ const updateUser = asyncHandler(async (req, res) => {
     {
       prevEmail,
     },
-    { firstName, lastName, email: sanitizedEmail }
+    { firstName, lastName, email: sanitizedEmail },
+    { new: true }
   )
+
+  console.log('updatedUser', updatedUser)
 
   if (updatedUser) {
     res.status(201).json({
@@ -247,18 +250,11 @@ const verify = asyncHandler(async (req, res) => {
     {
       _id: verificationId,
     },
-    { isActive: true }
+    { isActive: true },
+    { new: true }
   )
   if (user) {
-    res.status(201).json({
-      _id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      isActive: user.isActive,
-      isMuted: user.isMuted,
-    })
+    res.status(201).json(user)
   }
 })
 
