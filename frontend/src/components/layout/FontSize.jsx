@@ -7,16 +7,29 @@ const FontSize = ({ max, range, onSlideProp }) => {
         max={max}
         value={range}
         className='range '
-        step='25'
+        step='20'
         onChange={onSlideProp}
       />
 
-      <div className='w-full space-x-20 text-center  '>
-        <span className='text-lg align-text-middle'>a</span>
-        <span className='text-xl align-text-middle'>a</span>
-        <span className='text-2xl align-text-middle'>a</span>
-        <span className='text-3xl align-text-middle'>a</span>
-        <span className='text-4xl align-text-middle'>a</span>
+      <div className='flex w-full justify-between items-center'>
+        <div>
+          <span className='text-base'>a</span>
+        </div>
+        <div>
+          <span className='text-lg'>a</span>
+        </div>
+        <div>
+          <span className='text-xl'>a</span>
+        </div>
+        <div>
+          <span className='text-2xl'>a</span>
+        </div>
+        <div>
+          <span className='text-3xl'>a</span>
+        </div>
+        <div>
+          <span className='text-4xl'>a</span>
+        </div>
       </div>
     </>
   )

@@ -10,12 +10,14 @@ const ThemeSetting = () => {
   const fontModifier = () => {
     switch (fontSize) {
       case '0':
+        return 'text-md'
+      case '20':
         return 'text-lg'
-      case '25':
+      case '40':
         return 'text-xl'
-      case '50':
+      case '60':
         return 'text-2xl'
-      case '75':
+      case '80':
         return 'text-3xl'
       case '100':
         return 'text-4xl'

@@ -52,8 +52,8 @@ const userSchema = mongoose.Schema(
       fontSize: {
         type: String,
         required: true,
-        default: '0',
-        enum: ['0', '25', '50', '75', '100'],
+        default: '20',
+        enum: ['0', '20', '40', '60', '80', '100'],
       },
     },
   },

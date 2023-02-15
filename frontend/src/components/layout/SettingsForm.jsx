@@ -44,7 +44,6 @@ const SettingsForm = () => {
       fontSize: range,
     }
 
-    // not changing state until fired twice ???
     const updated = await dispatch(updateSettings(settings))
     await dispatch(setViewDark(settings))
 

@@ -46,7 +46,6 @@ export const preferenceSlice = createSlice({
         state.viewDark = action.payload.darkMode
         state.fontSize = action.payload.fontSize
         state.pureBlack = action.payload.pureBlack
-        state.message = action.payload
       })
       .addCase(setViewDark.rejected, (state, action) => {
         state.message = action.payload
