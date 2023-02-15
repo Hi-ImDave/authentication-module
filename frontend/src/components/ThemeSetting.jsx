@@ -5,8 +5,6 @@ const ThemeSetting = () => {
     (state) => state.preference
   )
 
-  const darkMode = { viewDark, pureBlack }
-
   const fontModifier = () => {
     switch (fontSize) {
       case '0':

@@ -203,15 +203,8 @@ const updateSettings = asyncHandler(async (req, res) => {
 
   const settings = { settings: { darkMode, pureBlack, fontSize } }
 
-  console.log(settings)
-
-  // const user = await User.findById(_id)
-  // console.log('user', user)
-
   // Update user
   const updatedUser = await User.findByIdAndUpdate(_id, settings, { new: true })
-
-  console.log('updatedUser', updatedUser)
 
   if (updatedUser) {
     res.status(201).json(updatedUser)
@@ -315,7 +308,6 @@ const resetPassword = asyncHandler(async (req, res) => {
 // @access  Private
 const changePassword = asyncHandler(async (req, res) => {
   const { _id, password, passwordConfirm } = req.body
-  console.log(_id)
   const user = await User.findById(_id)
   if (!user) {
     res.status(400)

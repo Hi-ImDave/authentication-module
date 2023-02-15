@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
 
 import { updateSettings } from '../../features/auth/authSlice'
-import { reset, setViewDark } from '../../features/preferences/preferenceSlice'
+import { setViewDark } from '../../features/preferences/preferenceSlice'
 
 import DarkMode from './DarkMode'
 import FontSize from './FontSize'
@@ -44,7 +43,7 @@ const SettingsForm = () => {
       fontSize: range,
     }
 
-    const updated = await dispatch(updateSettings(settings))
+    await dispatch(updateSettings(settings))
     await dispatch(setViewDark(settings))
 
     toast.success('settings updated')
