@@ -45,9 +45,9 @@ const UserList = () => {
   }, [dispatch])
 
   return (
-    <div className='p-10 lg:w-3/5  '>
+    <div className='p-10 lg:w-3/5'>
       <h2
-        className={`text-center text-4xl mb-4 transition-colors duration-1000 ease-in-out ${
+        className={`text-center text-4xl mb-4 ${theme.transition} ${
           !viewDark && 'text-black'
         } font-semibold underline`}
       >

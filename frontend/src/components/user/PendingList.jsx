@@ -40,7 +40,7 @@ const PendingList = () => {
   return (
     <div className='p-10 w-3/4'>
       <h2
-        className={`text-center text-4xl mb-4 transition-colors duration-1000 ease-in-out ${
+        className={`text-center text-4xl mb-4 ${theme.transition} ${
           !viewDark && 'text-black'
         } font-semibold underline`}
       >

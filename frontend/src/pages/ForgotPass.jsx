@@ -9,7 +9,7 @@ import Button from '../components/layout/Button.jsx'
 import ThemeSetting from '../components/ThemeSetting'
 
 const ForgotPass = () => {
-  let theme = ThemeSetting()
+  const theme = ThemeSetting()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -38,7 +38,7 @@ const ForgotPass = () => {
   return (
     <>
       <div
-        className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80`}
+        className={`hero min-h-screen ${theme.transition} ${theme.pageBG} bg-opacity-80`}
       >
         <div className='hero-content flex-col '>
           <div className='text-center '>

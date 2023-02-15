@@ -13,7 +13,7 @@ const Login = () => {
   const { user, isLoading, isSuccess, isError, message } = useSelector(
     (state) => state.auth
   )
-  let theme = ThemeSetting()
+  const theme = ThemeSetting()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -63,7 +63,7 @@ const Login = () => {
   return (
     <>
       <div
-        className={`hero min-h-screen transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80`}
+        className={`hero min-h-screen ${theme.transition} ${theme.pageBG} bg-opacity-80`}
       >
         <div className='hero-content flex-col '>
           <div className='text-center flex'>

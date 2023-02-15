@@ -8,7 +8,7 @@ const Card = ({ title, description, navigate, className, children }) => {
 
   return (
     <div
-      className={`card transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105 ${className}`}
+      className={`card ${theme.transition} ${theme.cardBG} shadow-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:scale-105 ${className}`}
     >
       <div className='card-body items-center text-center'>
         <h2 className='card-title'>{title}</h2>

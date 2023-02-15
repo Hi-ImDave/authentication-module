@@ -16,9 +16,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div
-        className={`navbar transition-colors duration-1000 ease-in-out ${theme.cardBG} text-white`}
-      >
+      <div className={`navbar ${theme.transition} ${theme.cardBG} text-white`}>
         <div className='navbar-start'>{user && <Dropdown />}</div>
         <div className='navbar-center'>
           <Link

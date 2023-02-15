@@ -45,7 +45,7 @@ const InviteForm = () => {
 
   return (
     <div
-      className={`card transition-colors duration-1000 ease-in-out ${theme.cardBG} shadow-xl form-control h-min w-11/12 lg:w-3/4 mt-24 ml-8`}
+      className={`card ${theme.transition} ${theme.cardBG} shadow-xl form-control h-min w-11/12 lg:w-3/4 mt-24 ml-8`}
     >
       <div className='card-body '>
         <form onSubmit={onSubmit}>

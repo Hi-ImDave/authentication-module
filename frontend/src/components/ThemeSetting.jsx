@@ -5,7 +5,7 @@ const ThemeSetting = () => {
     (state) => state.preference
   )
 
-  console.log(fontSize)
+  //  add switch for text color
 
   const fontModifier = () => {
     switch (fontSize) {
@@ -56,7 +56,14 @@ const ThemeSetting = () => {
     }
   }
 
-  return { font: fontModifier(), pageBG: pageBG(), cardBG: cardBG() }
+  const transition = 'transition-colors duration-1000 ease-in-out'
+
+  return {
+    font: fontModifier(),
+    pageBG: pageBG(),
+    cardBG: cardBG(),
+    transition,
+  }
 }
 
 export default ThemeSetting

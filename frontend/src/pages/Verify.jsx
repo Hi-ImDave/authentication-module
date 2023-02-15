@@ -7,7 +7,7 @@ import { reset, verify } from '../features/auth/authSlice'
 import ThemeSetting from '../components/ThemeSetting'
 
 const Verify = () => {
-  let theme = ThemeSetting()
+  const theme = ThemeSetting()
 
   const { verificationId } = useParams()
   const userData = { verificationId }
@@ -25,7 +25,7 @@ const Verify = () => {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-1000 ease-in-out ${theme.pageBG} bg-opacity-80 text-center`}
+      className={`min-h-screen ${theme.transition} ${theme.pageBG} bg-opacity-80 text-center`}
     >
       <form className='card-body'>
         <p>Thank you for verifying your account</p>
